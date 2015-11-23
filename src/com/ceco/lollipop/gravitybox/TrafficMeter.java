@@ -201,38 +201,7 @@ public class TrafficMeter extends TrafficMeterAbstract {
     }
 
     private long getTotalReceivedBytes() {
-        String line;
-        String[] segs;
-        long received = 0;
-        int i;
-        long tmp = 0;
-        boolean isNum;
-        try {
-            FileReader fr = new FileReader("/proc/net/dev");
-            BufferedReader in = new BufferedReader(fr);
-            while ((line = in.readLine()) != null) {
-                line = line.trim();
-                if (line.contains(":") && !line.startsWith("lo")) {
-                    segs = line.split(":")[1].split(" ");
-                    for (i = 0; i < segs.length; i++) {
-                        isNum = true;
-                        try {
-                            tmp = Long.parseLong(segs[i]);
-                        } catch (Exception e) {
-                            isNum = false;
-                        }
-                        if (isNum == true) {
-                            received = received + tmp;
-                            break;
-                        }
-                    }
-                }
-            }
-            in.close();
-        } catch (IOException e) {
-            return -1;
-        }
-        return received;
+        return getTotalRxTxBytes()[0];
     }
 
     private void setInactivityMode(int mode) {

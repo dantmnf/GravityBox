@@ -309,4 +309,44 @@ public abstract class TrafficMeterAbstract extends TextView
     protected abstract void onPreferenceChanged(Intent intent);
     protected abstract void startTrafficUpdates();
     protected abstract void stopTrafficUpdates();
+	
+    protected static boolean isCountedInterface(String iface) {
+        return (iface != "lo") && (!iface.startsWith("tun"));
+    }
+    
+    private static long tryParseLong(String obj) {
+        try {
+            return Long.parseLong(obj);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+    
+    protected static long[] getTotalRxTxBytes() {
+        String line;
+        String[] segs;
+        String iface;
+        long rxBytes = 0;
+        long txBytes = 0;
+        try {
+            FileReader fr = new FileReader("/proc/net/dev");
+            BufferedReader in = new BufferedReader(fr);
+            while ((line = in.readLine()) != null) {
+                line = line.trim();
+                if (line.contains(":")) {
+                    segs = line.split(":");
+                    iface = segs[0];
+                    if (isCountedInterface(iface)) {
+                        segs = segs[1].split(" ");
+                        rxBytes += tryParseLong(segs[0]);
+                        txBytes += tryParseLong(segs[8]);
+                    }
+                }
+            }
+            in.close();
+        } catch (IOException e) {
+            return new long[]{0, 0};
+        }
+        return new long[]{rxBytes, txBytes};
+    }
 }

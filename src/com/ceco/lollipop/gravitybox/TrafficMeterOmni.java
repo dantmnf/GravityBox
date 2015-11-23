@@ -72,6 +72,8 @@ public class TrafficMeterOmni extends TrafficMeterAbstract {
     private boolean mShowIcon;
     private boolean mAutoHide;
     private int mAutoHideThreshold;
+	
+	private boolean mCanReadFromFile;
 
     private Handler mTrafficHandler = new Handler() {
         @Override
@@ -90,9 +92,17 @@ public class TrafficMeterOmni extends TrafficMeterAbstract {
             }
             lastUpdateTime = SystemClock.elapsedRealtime();
 
+            long newTotalRxBytes;
+            long newTotalTxBytes;
             // Calculate the data rate from the change in total bytes and time
-            long newTotalRxBytes = TrafficStats.getTotalRxBytes();
-            long newTotalTxBytes = TrafficStats.getTotalTxBytes();
+            if (mCanReadFromFile) {
+                long[] newTotalRxTxBytes = getTotalRxTxBytes();
+                newTotalRxBytes = newTotalRxTxBytes[0];
+                newTotalTxBytes = newTotalRxTxBytes[1];
+            } else {
+                newTotalRxBytes = TrafficStats.getTotalRxBytes();
+                newTotalTxBytes = TrafficStats.getTotalTxBytes();
+            }
             long rxData = newTotalRxBytes - totalRxBytes;
             long txData = newTotalTxBytes - totalTxBytes;
 
@@ -275,5 +285,9 @@ public class TrafficMeterOmni extends TrafficMeterAbstract {
             mIconColor = colorInfo.coloringEnabled ? colorInfo.iconColor[0] : null;
             updateTrafficDrawable();
         }
+    }
+	
+	private static boolean canReadFromFile() {
+        return new File("/proc/net/dev").exists();
     }
 }
