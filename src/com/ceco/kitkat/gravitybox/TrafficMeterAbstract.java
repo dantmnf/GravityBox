@@ -16,6 +16,11 @@
 
 package com.ceco.kitkat.gravitybox;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import com.ceco.kitkat.gravitybox.managers.StatusBarIconManager;
 import com.ceco.kitkat.gravitybox.managers.StatusBarIconManager.ColorInfo;
 import com.ceco.kitkat.gravitybox.managers.StatusBarIconManager.IconManagerListener;
@@ -61,6 +66,7 @@ public abstract class TrafficMeterAbstract extends TextView
     protected boolean mMobileDataConnected;
     protected boolean mShowOnlyForMobileData;
     protected boolean mIsTrackingProgress;
+    protected boolean mCanReadFromFile;
 
     protected static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -105,6 +111,7 @@ public abstract class TrafficMeterAbstract extends TextView
                 }
             };
         }
+        mCanReadFromFile = canReadFromFile();
     }
 
     public void initialize(XSharedPreferences prefs) throws Throwable {
@@ -327,5 +334,9 @@ public abstract class TrafficMeterAbstract extends TextView
             return new long[]{0, 0};
         }
         return new long[]{rxBytes, txBytes};
+    }
+    
+    private boolean canReadFromFile() {
+        return new File("/proc/net/dev").exists();
     }
 }
