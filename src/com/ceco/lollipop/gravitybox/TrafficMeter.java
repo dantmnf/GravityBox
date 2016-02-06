@@ -27,10 +27,6 @@ import android.view.View;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.File;
 
 import com.ceco.lollipop.gravitybox.R;
 
@@ -42,7 +38,6 @@ public class TrafficMeter extends TrafficMeterAbstract {
     public static final int INACTIVITY_MODE_SUMMARY = 2;
 
     boolean mTrafficMeterHide;
-    boolean mCanReadFromFile;
     int mTrafficMeterSummaryTime;
     long mTotalRxBytes;
     long mLastUpdateTime;
@@ -63,7 +58,6 @@ public class TrafficMeter extends TrafficMeterAbstract {
 
     @Override
     protected void onInitialize(XSharedPreferences prefs) throws Throwable {
-        mCanReadFromFile = canReadFromFile();
         Context gbContext = Utils.getGbContext(getContext());
         mB = gbContext.getString(R.string.byte_abbr);
         mKB = gbContext.getString(R.string.kilobyte_abbr);
@@ -195,10 +189,6 @@ public class TrafficMeter extends TrafficMeterAbstract {
             getHandler().postDelayed(mRunnable, mInterval);
         }
     };
-
-    private boolean canReadFromFile() {
-        return new File("/proc/net/dev").exists();
-    }
 
     private long getTotalReceivedBytes() {
         return getTotalRxTxBytes()[0];

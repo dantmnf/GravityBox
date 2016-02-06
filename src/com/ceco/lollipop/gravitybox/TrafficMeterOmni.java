@@ -73,8 +73,6 @@ public class TrafficMeterOmni extends TrafficMeterAbstract {
     private boolean mAutoHide;
     private int mAutoHideThreshold;
 	
-	private boolean mCanReadFromFile;
-
     private Handler mTrafficHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -193,8 +191,6 @@ public class TrafficMeterOmni extends TrafficMeterAbstract {
 
     @Override
     protected void onInitialize(XSharedPreferences prefs) throws Throwable {
-		mCanReadFromFile = canReadFromFile();
-		
         mGbContext = Utils.getGbContext(getContext());
         SYMBOLS.put("b/s", mGbContext.getString(R.string.bit_per_sec_abbr));
         SYMBOLS.put("B/s", mGbContext.getString(R.string.byte_per_sec_abbr));
@@ -289,7 +285,4 @@ public class TrafficMeterOmni extends TrafficMeterAbstract {
         }
     }
 	
-	private static boolean canReadFromFile() {
-        return new File("/proc/net/dev").exists();
-    }
 }
