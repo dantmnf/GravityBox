@@ -27,10 +27,7 @@ import android.view.View;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.File;
+
 
 import com.ceco.marshmallow.gravitybox.R;
 
