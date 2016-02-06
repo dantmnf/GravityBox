@@ -242,6 +242,25 @@
                         android:summary="@string/pref_cell_tile_data_off_icon_summary"
                         android:defaultValue="false" />
 
+                    <ListPreference
+                        android:key="pref_cell_tile_data_toggle" 
+                        android:title="@string/pref_cell_tile_data_toggle_title"
+                        android:entries="@array/tile_data_toggle_entries"
+                        android:entryValues="@array/tile_data_toggle_values"
+                        android:defaultValue="DISABLED" />
+
+                </PreferenceScreen>
+
+                <PreferenceScreen
+                    android:key="pref_cat_qs_location_tile"
+                    android:title="@string/pref_cat_qs_location_tile_title">
+
+                    <CheckBoxPreference 
+                        android:key="pref_location_tile_quick_mode"
+                        android:title="@string/pref_tile_quick_mode_title"
+                        android:summary="@string/pref_location_tile_quick_mode_summary"
+                        android:defaultValue="false" />
+
                 </PreferenceScreen>
 
                 <PreferenceScreen
@@ -334,31 +353,19 @@
                     android:key="pref_cat_qs_nm_tile_settings"
                     android:title="@string/pref_cat_qs_nm_tile_settings_title">
 
-                    <ListPreference
-                        android:key="pref_network_mode_tile_mode" 
-                        android:title="@string/pref_network_mode_tile_mode_title"
-                        android:entries="@array/network_mode_tile_mode_entries"
-                        android:entryValues="@array/network_mode_tile_mode_values"
-                        android:defaultValue="0" />
-
-                    <ListPreference
-                        android:key="pref_network_mode_tile_2g3g_mode" 
-                        android:title="@string/pref_network_mode_tile_2g3g_mode_title"
-                        android:entries="@array/nmt_2g3g_mode_entries"
-                        android:entryValues="@array/nmt_2g3g_mode_values"
-                        android:defaultValue="0"
-                        android:dependency="pref_network_mode_tile_cdma" />
+                    <MultiSelectListPreference 
+                        android:key="pref_nm_tile_enabled_modes"
+                        android:title="@string/pref_tile_enabled_modes_title"
+                        android:summary="@string/pref_nm_tile_enabled_modes_summary"
+                        android:entries="@array/network_mode_entries"
+                        android:entryValues="@array/network_mode_values"
+                        android:defaultValue="@array/network_mode_values_default" />
 
                     <CheckBoxPreference 
-                        android:key="pref_network_mode_tile_lte"
-                        android:title="@string/pref_network_mode_tile_lte_title"
+                        android:key="pref_nm_tile_quick_mode"
+                        android:title="@string/pref_tile_quick_mode_title"
+                        android:summary="@string/pref_nm_tile_quick_mode_summary"
                         android:defaultValue="false" />
-
-                    <CheckBoxPreference 
-                        android:key="pref_network_mode_tile_cdma"
-                        android:title="@string/pref_network_mode_tile_cdma_title"
-                        android:defaultValue="false"
-                        android:disableDependentsState="true" />
 
                     <ListPreference
                         android:key="pref_qs_network_mode_sim_slot" 
@@ -370,19 +377,45 @@
 
                 </PreferenceScreen>
 
-                <MultiSelectListPreference 
-                    android:key="pref_qs_ringer_mode"
-                    android:title="@string/pref_qs_ringer_mode_title"
-                    android:entries="@array/ringer_mode_entries"
-                    android:entryValues="@array/ringer_mode_values"
-                    android:defaultValue="@array/ringer_mode_values" />
+                <PreferenceScreen 
+                    android:key="pref_cat_qs_rm_tile"
+                    android:title="@string/pref_cat_qs_rm_tile_title">
 
-                <MultiSelectListPreference 
-                    android:key="pref_qs_stay_awake"
-                    android:title="@string/pref_qs_stay_awake_title"
-                    android:entries="@array/stay_awake_entries"
-                    android:entryValues="@array/stay_awake_values"
-                    android:defaultValue="@array/stay_awake_values" />
+                    <MultiSelectListPreference 
+                        android:key="pref_qs_ringer_mode"
+                        android:title="@string/pref_tile_enabled_modes_title"
+                        android:summary="@string/pref_rm_tile_enabled_modes_summary"
+                        android:entries="@array/ringer_mode_entries"
+                        android:entryValues="@array/ringer_mode_values"
+                        android:defaultValue="@array/ringer_mode_values" />
+
+                    <CheckBoxPreference 
+                        android:key="pref_rm_tile_quick_mode"
+                        android:title="@string/pref_tile_quick_mode_title"
+                        android:summary="@string/pref_rm_tile_quick_mode_summary"
+                        android:defaultValue="false" />
+
+                </PreferenceScreen>
+
+                <PreferenceScreen 
+                    android:key="pref_cat_qs_sa_tile"
+                    android:title="@string/pref_cat_qs_sa_tile_title">
+
+                    <MultiSelectListPreference 
+                        android:key="pref_qs_stay_awake"
+                        android:title="@string/pref_tile_enabled_modes_title"
+                        android:summary="@string/pref_sa_tile_enabled_modes_summary"
+                        android:entries="@array/stay_awake_entries"
+                        android:entryValues="@array/stay_awake_values"
+                        android:defaultValue="@array/stay_awake_values" />
+
+                    <CheckBoxPreference 
+                        android:key="pref_sa_tile_quick_mode"
+                        android:title="@string/pref_tile_quick_mode_title"
+                        android:summary="@string/pref_sa_tile_quick_mode_summary"
+                        android:defaultValue="false" />
+
+                </PreferenceScreen>
 
             </PreferenceScreen>
 
@@ -409,6 +442,13 @@
                 android:key="pref_qs_hide_on_change"
                 android:title="@string/pref_qs_hide_on_change_title"
                 android:summary="@string/pref_qs_hide_on_change_summary"
+                android:defaultValue="false"
+                android:dependency="pref_qs_management_enable" />
+
+            <CheckBoxPreference 
+                android:key="pref_qs_enable_detail_view"
+                android:title="@string/pref_qs_enable_detail_view_title"
+                android:summary="@string/pref_qs_enable_detail_view_summary"
                 android:defaultValue="false"
                 android:dependency="pref_qs_management_enable" />
 

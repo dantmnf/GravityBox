@@ -133,7 +133,7 @@ public class CmCircleBattery extends ImageView implements IconManagerListener, B
 
         mPaintFont.setColor(Color.WHITE);
         mPaintSystem.setColor(mPaintFont.getColor());
-        mPaintGray.setColor(res.getColor(android.R.color.darker_gray));
+        mPaintGray.setColor(0x4DFFFFFF);
 
         // try to use battery saver color; fall back to red in case of problems
         int resId = res.getIdentifier("battery_saver_mode_color", "color",
@@ -159,7 +159,7 @@ public class CmCircleBattery extends ImageView implements IconManagerListener, B
     public void setStyle(Style style) {
         switch (style) {
             case SOLID:
-                mStrokeWidthFactor = 9.5f;
+                mStrokeWidthFactor = 7.5f;
                 mPathEffect = null;
                 break;
             case DASHED:
@@ -299,12 +299,12 @@ public class CmCircleBattery extends ImageView implements IconManagerListener, B
             initSizeMeasureIconHeight();
         }
 
-        mPaintFont.setTextSize(mCircleSize / 1.8f);
+        mPaintFont.setTextSize(mCircleSize / 2.0f);
 
         float strokeWidth = mCircleSize / mStrokeWidthFactor;
         mPaintRed.setStrokeWidth(strokeWidth);
         mPaintSystem.setStrokeWidth(strokeWidth);
-        mPaintGray.setStrokeWidth(strokeWidth / 3.5f);
+        mPaintGray.setStrokeWidth(strokeWidth);
 
         // calculate rectangle for drawArc calls
         int pLeft = getPaddingLeft();
@@ -320,7 +320,7 @@ public class CmCircleBattery extends ImageView implements IconManagerListener, B
         mTextLeftX = mCircleSize / 2.0f + getPaddingLeft();
         mTextRightX = mTextLeftX + off;
         // the +1 at end of formular balances out rounding issues. works out on all resolutions
-        mTextY = mCircleSize / 2.0f + (bounds.bottom - bounds.top) / 2.0f - strokeWidth / 2.0f + 1;
+        mTextY = mCircleSize / 2.0f + (bounds.bottom - bounds.top) / 1.9f - strokeWidth / 1.9f + 1;
 
         // force new measurement for wrap-content xml tag
         measure(0, 0);

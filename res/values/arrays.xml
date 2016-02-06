@@ -316,6 +316,8 @@
     <string-array name="window_animation_scale_entries" translatable="false">
         <item>@string/animation_scale0</item>
         <item>@string/animation_scale1</item>
+        <item>@string/animation_scale10</item>
+        <item>@string/animation_scale11</item>
         <item>@string/animation_scale2</item>
         <item>@string/animation_scale8</item>
         <item>@string/animation_scale3</item>
@@ -330,6 +332,8 @@
     <string-array name="window_animation_scale_values" translatable="false" >
         <item>0</item>
         <item>.25</item>
+        <item>.35</item>
+        <item>.4</item>
         <item>.5</item>
         <item>.75</item>
         <item>1</item>
@@ -344,6 +348,8 @@
     <string-array name="transition_animation_scale_entries" translatable="false">
         <item>@string/animation_scale0</item>
         <item>@string/animation_scale1</item>
+        <item>@string/animation_scale10</item>
+        <item>@string/animation_scale11</item>
         <item>@string/animation_scale2</item>
         <item>@string/animation_scale8</item>
         <item>@string/animation_scale3</item>
@@ -358,6 +364,8 @@
     <string-array name="transition_animation_scale_values" translatable="false" >
         <item>0</item>
         <item>.25</item>
+        <item>.35</item>
+        <item>.4</item>
         <item>.5</item>
         <item>.75</item>
         <item>1</item>
@@ -372,6 +380,8 @@
     <string-array name="animator_duration_scale_entries">
         <item>@string/animation_scale0</item>
         <item>@string/animation_scale1</item>
+        <item>@string/animation_scale10</item>
+        <item>@string/animation_scale11</item>
         <item>@string/animation_scale2</item>
         <item>@string/animation_scale8</item>
         <item>@string/animation_scale3</item>
@@ -386,6 +396,8 @@
     <string-array name="animator_duration_scale_values" translatable="false" >
         <item>0</item>
         <item>.25</item>
+        <item>.35</item>
+        <item>.4</item>
         <item>.5</item>
         <item>.75</item>
         <item>1</item>
@@ -498,18 +510,6 @@
         <item>leave_intact</item>
         <item>non_encodable</item>
         <item>all</item>
-    </string-array>
-
-    <string-array name="network_mode_tile_mode_entries" translatable="false">
-        <item>@string/nm_tile_mode1</item>
-        <item>@string/nm_tile_mode2</item>
-        <item>@string/nm_tile_mode3</item>
-    </string-array>
-
-    <string-array name="network_mode_tile_mode_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
     </string-array>
 
     <string-array name="network_mode_sim_slot_entries" translatable="false">
@@ -890,7 +890,6 @@
         <item>@string/stay_awake_5m</item>
         <item>@string/stay_awake_10m</item>
         <item>@string/stay_awake_30m</item>
-        <item>@string/stay_awake_on</item>
     </string-array>
 
     <string-array name="stay_awake_values" translatable="false">
@@ -901,7 +900,6 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
-        <item>7</item>
     </string-array>
 
     <string-array name="lc_led_mode_entries" translatable="false">
@@ -1047,16 +1045,6 @@
         <item>DISABLED</item>
     </string-array>
 
-    <string-array name="nmt_2g3g_mode_entries" translatable="false">
-        <item>@string/nmt_2g3g_mode_wcdma</item>
-        <item>@string/nmt_2g3g_mode_auto</item>
-    </string-array>
-
-    <string-array name="nmt_2g3g_mode_values" translatable="false">
-        <item>0</item>
-        <item>3</item>
-    </string-array>
-
     <string-array name="qr_audio_quality_entries" translatable="false">
         <item>@string/qr_audio_quality_low</item>
         <item>@string/qr_audio_quality_medium</item>
@@ -1173,6 +1161,57 @@
     <string-array name="temperature_unit_values" translatable="false">
         <item>C</item>
         <item>F</item>
+    </string-array>
+
+    <string-array name="tile_data_toggle_entries" translatable="false">
+        <item>@string/tile_data_toggle_disabled</item>
+        <item>@string/tile_data_toggle_singlepress</item>
+        <item>@string/tile_data_toggle_longpress</item>
+    </string-array>
+
+    <string-array name="tile_data_toggle_values" translatable="false">
+        <item>DISABLED</item>
+        <item>SINGLEPRESS</item>
+        <item>LONGPRESS</item>
+    </string-array>
+
+    <string-array name="network_mode_entries" translatable="false">
+        <item>@string/network_mode_0</item>
+        <item>@string/network_mode_1</item>
+        <item>@string/network_mode_2</item>
+        <item>@string/network_mode_3</item>
+        <item>@string/network_mode_4</item>
+        <item>@string/network_mode_5</item>
+        <item>@string/network_mode_6</item>
+        <item>@string/network_mode_7</item>
+        <item>@string/network_mode_8</item>
+        <item>@string/network_mode_9</item>
+        <item>@string/network_mode_10</item>
+        <item>@string/network_mode_11</item>
+        <item>@string/network_mode_12</item>
+    </string-array>
+
+    <string-array name="network_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="network_mode_values_default" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>10</item>
     </string-array>
 
 </resources>

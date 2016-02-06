@@ -17,10 +17,12 @@ import com.ceco.lollipop.gravitybox.quicksettings.QsTile;
 import com.ceco.lollipop.gravitybox.quicksettings.QsTileEventDistributor;
 import com.ceco.lollipop.gravitybox.quicksettings.TileOrderActivity;
 
+import android.content.res.XModuleResources;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 
 public class ModQsTiles {
     public static final String PACKAGE_NAME = "com.android.systemui";
@@ -55,6 +57,12 @@ public class ModQsTiles {
             "gb_tile_compass"
     ));
 
+    public static class RES_IDS {
+        public static int NM_TITLE;
+        public static int RM_TITLE;
+        public static int SA_TITLE;
+    }
+
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
     }
@@ -63,11 +71,19 @@ public class ModQsTiles {
     private static QsQuickPulldownHandler mQuickPulldownHandler;
     private static QsPanel mQsPanel;
 
+    public static void initResources(final InitPackageResourcesParam resparam) {
+        XModuleResources modRes = XModuleResources.createInstance(GravityBox.MODULE_PATH, resparam.res);
+        RES_IDS.NM_TITLE = resparam.res.addResource(modRes, R.string.qs_tile_network_mode);
+        RES_IDS.RM_TITLE = resparam.res.addResource(modRes, R.string.qs_tile_ringer_mode);
+        RES_IDS.SA_TITLE = resparam.res.addResource(modRes, R.string.qs_tile_stay_awake);
+    }
+
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
         try {
             if (DEBUG) log("init");
 
             Class<?> classTileHost = XposedHelpers.findClass(CLASS_TILE_HOST, classLoader);
+            mQsPanel = new QsPanel(prefs, classLoader);
 
             XposedHelpers.findAndHookMethod(classTileHost, "recreateTiles", new XC_MethodHook() {
                 @SuppressWarnings("unchecked")
@@ -90,6 +106,7 @@ public class ModQsTiles {
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     if (mEventDistributor == null) {
                         mEventDistributor = new QsTileEventDistributor(param.thisObject, prefs);
+                        mQsPanel.setEventDistributor(mEventDistributor);
                         if (DEBUG) log("Tile event distributor created");
                     }
 
@@ -169,9 +186,6 @@ public class ModQsTiles {
 
                     if (mQuickPulldownHandler == null) {
                         mQuickPulldownHandler = new QsQuickPulldownHandler(context, prefs, mEventDistributor);
-                    }
-                    if (mQsPanel == null) {
-                        mQsPanel = new QsPanel(context, prefs, mEventDistributor);
                     }
                     mQsPanel.updateResources();
                 }

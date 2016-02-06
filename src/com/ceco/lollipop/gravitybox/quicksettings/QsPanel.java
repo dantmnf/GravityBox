@@ -43,21 +43,17 @@ public class QsPanel implements BroadcastSubReceiver {
         XposedBridge.log(TAG + ": " + message);
     }
 
-    private Context mContext;
     private XSharedPreferences mPrefs;
     private ViewGroup mQsPanel;
     private int mNumColumns;
     private View mBrightnessSlider;
     private boolean mHideBrightness;
 
-    public QsPanel(Context context, XSharedPreferences prefs, 
-            QsTileEventDistributor eventDistributor) {
-        mContext = context;
+    public QsPanel(XSharedPreferences prefs, ClassLoader cl) {
         mPrefs = prefs;
-        eventDistributor.registerBroadcastSubReceiver(this);
 
         initPreferences();
-        createHooks();
+        createHooks(cl);
         if (DEBUG) log("QsPanel wrapper created");
     }
 
@@ -67,6 +63,10 @@ public class QsPanel implements BroadcastSubReceiver {
         mHideBrightness = mPrefs.getBoolean(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS_HIDE_BRIGHTNESS, false);
         if (DEBUG) log("initPreferences: mNumColumns=" + mNumColumns +
                 "; mHideBrightness=" + mHideBrightness);
+    }
+
+    public void setEventDistributor(QsTileEventDistributor eventDistributor) {
+        eventDistributor.registerBroadcastSubReceiver(this);   
     }
 
     public void updateResources() {
@@ -130,7 +130,7 @@ public class QsPanel implements BroadcastSubReceiver {
             enabledTiles.addAll(Arrays.asList(
                     mPrefs.getString(TileOrderActivity.PREF_KEY_TILE_ENABLED,
                     TileOrderActivity.getDefaultTileList(
-                            Utils.getGbContext(mContext))).split(",")));
+                            Utils.getGbContext(mQsPanel.getContext()))).split(",")));
         } catch (Throwable t) { /* ignore */ }
 
         for (String tileKey : enabledTiles) {
@@ -141,10 +141,8 @@ public class QsPanel implements BroadcastSubReceiver {
         return count;
     }
 
-    private void createHooks() {
+    private void createHooks(ClassLoader cl) {
         try {
-            ClassLoader cl = mContext.getClassLoader();
-
             XposedHelpers.findAndHookMethod(CLASS_QS_PANEL, cl, "updateResources",
                     new XC_MethodHook() {
                 @Override
@@ -197,9 +195,12 @@ public class QsPanel implements BroadcastSubReceiver {
                         shouldInvalidate = true;
                         if (DEBUG) log("updateResources: Updated first row dimensions: all tiles non-dual");
                     // apply additional width reduction to nicely fit 3 dual tiles in one row
-                    } else if (dualTileCount > 2 && mNumColumns < 5) {
+                    } else {
+                        float factor = (dualTileCount > 3 && mNumColumns < 6) ? 0.65f :
+                            (dualTileCount > 3 && mNumColumns <= 6) ||
+                            (dualTileCount > 2 && mNumColumns < 5) ? 0.75f : 1f;
                         int lcw = XposedHelpers.getIntField(mQsPanel, "mLargeCellWidth");
-                        XposedHelpers.setIntField(mQsPanel, "mLargeCellWidth", Math.round(lcw*0.75f));
+                        XposedHelpers.setIntField(mQsPanel, "mLargeCellWidth", Math.round(lcw*factor));
                         shouldInvalidate = true;
                         if (DEBUG) log("updateResources: Applied additional reduction to dual tile width");
                     }

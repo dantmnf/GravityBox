@@ -96,6 +96,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_QUICK_PULLDOWN = "pref_quick_pulldown";
     public static final String PREF_KEY_QUICK_PULLDOWN_SIZE = "pref_quick_pulldown_size";
     public static final String PREF_KEY_QUICK_SETTINGS_HIDE_BRIGHTNESS = "pref_qs_hide_brightness";
+    public static final String PREF_KEY_QS_ENABLE_DETAIL_VIEW = "pref_qs_enable_detail_view";
     public static final int QUICK_PULLDOWN_OFF = 0;
     public static final int QUICK_PULLDOWN_RIGHT = 1;
     public static final int QUICK_PULLDOWN_LEFT = 2;
@@ -523,6 +524,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_QS_HIDE_ON_CHANGE = "qsHideOnChange";
     public static final String EXTRA_QS_TILE_LABEL_STYLE = "qsTileLabelStyle";
     public static final String EXTRA_QS_HIDE_BRIGHTNESS = "qsHideBrightness";
+    public static final String EXTRA_QS_ENABLE_DETAIL_VIEW = "qsEnableDetailView";
 
     public static final String ACTION_PREF_CLOCK_CHANGED = "gravitybox.intent.action.CENTER_CLOCK_CHANGED";
     public static final String EXTRA_CENTER_CLOCK = "centerClock";
@@ -589,18 +591,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_CAT_KEY_PHONE_MESSAGING = "pref_cat_phone_messaging";
     public static final String PREF_CAT_KEY_PHONE_MOBILE_DATA = "pref_cat_phone_mobile_data";
 
-    public static final String PREF_KEY_NETWORK_MODE_TILE_MODE = "pref_network_mode_tile_mode";
-    public static final String PREF_KEY_NETWORK_MODE_TILE_2G3G_MODE = "pref_network_mode_tile_2g3g_mode";
-    public static final String PREF_KEY_NETWORK_MODE_TILE_LTE = "pref_network_mode_tile_lte";
-    public static final String PREF_KEY_NETWORK_MODE_TILE_CDMA = "pref_network_mode_tile_cdma";
     public static final String PREF_KEY_RINGER_MODE_TILE_MODE = "pref_qs_ringer_mode";
+    public static final String PREF_KEY_RINGER_MODE_TILE_QUICK_MODE = "pref_rm_tile_quick_mode";
     public static final String PREF_STAY_AWAKE_TILE_MODE = "pref_qs_stay_awake";
-    public static final String EXTRA_NMT_MODE = "networkModeTileMode";
-    public static final String EXTRA_NMT_2G3G_MODE = "networkModeTile2G3GMode";
-    public static final String EXTRA_NMT_LTE = "networkModeTileLte";
-    public static final String EXTRA_NMT_CDMA = "networkModeTileCdma";
+    public static final String PREF_KEY_STAY_AWAKE_TILE_QUICK_MODE = "pref_sa_tile_quick_mode";
     public static final String EXTRA_RMT_MODE = "ringerModeTileMode";
+    public static final String EXTRA_RMT_QUICK_MODE = "ringerModeTileQuickMode";
     public static final String EXTRA_SA_MODE = "stayAwakeTileMode";
+    public static final String EXTRA_SA_QUICK_MODE = "stayAwakeTileQuickMode";
 
     public static final String PREF_KEY_DISPLAY_ALLOW_ALL_ROTATIONS = "pref_display_allow_all_rotations";
     public static final String ACTION_PREF_DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED = 
@@ -813,6 +811,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_CAT_KEY_CELL_TILE = "pref_cat_qs_cell_tile";
     public static final String PREF_KEY_CELL_TILE_DATA_OFF_ICON = "pref_cell_tile_data_off_icon";
     public static final String EXTRA_CELL_TILE_DATA_OFF_ICON = "cellTileDataOffIcon";
+    public static final String PREF_KEY_CELL_TILE_DATA_TOGGLE = "pref_cell_tile_data_toggle";
+    public static final String EXTRA_CELL_TILE_DATA_TOGGLE = "cellTileDataToggle";
 
     public static final String PREF_CAT_KEY_BATTERY_TILE = "pref_cat_qs_battery_tile";
     public static final String PREF_KEY_BATTERY_TILE_PERCENTAGE = "pref_battery_tile_percentage";
@@ -823,6 +823,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_BATTERY_TILE_SAVER_INDICATE = "batteryTileSaverIndicate";
     public static final String EXTRA_BATTERY_TILE_TEMP_UNIT = "batteryTileTempUnit";
     public static final String EXTRA_BATTERY_TILE_SWAP_ACTIONS = "batteryTileSwapActions";
+
+    public static final String PREF_KEY_LOCATION_TILE_QUICK_MODE = "pref_location_tile_quick_mode";
+    public static final String EXTRA_LOCATION_TILE_QUICK_MODE = "locationTileQuickMode";
+
+    public static final String PREF_KEY_NM_TILE_ENABLED_MODES = "pref_nm_tile_enabled_modes";
+    public static final String PREF_KEY_NM_TILE_QUICK_MODE = "pref_nm_tile_quick_mode";
+    public static final String EXTRA_NM_TILE_ENABLED_MODES = "nmTileEnabledModes";
+    public static final String EXTRA_NM_TILE_QUICK_MODE = "nmTileQuickMode";
 
     // MTK fixes
     public static final String PREF_CAT_KEY_MTK_FIXES = "pref_cat_mtk_fixes";
@@ -1201,10 +1209,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private PreferenceCategory mPrefCatPhoneTelephony;
         private PreferenceCategory mPrefCatPhoneMessaging;
         private PreferenceCategory mPrefCatPhoneMobileData;
-        private ListPreference mPrefNetworkModeTileMode;
-        private ListPreference mPrefNetworkModeTile2G3GMode;
-        private CheckBoxPreference mPrefNetworkModeTileLte;
-        private CheckBoxPreference mPrefNetworkModeTileCdma;
         private ListPreference mPrefQsNetworkModeSimSlot;
         private ListPreference mPrefSbSignalColorMode;
         private CheckBoxPreference mPrefUnplugTurnsOnScreen;
@@ -1474,10 +1478,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCallerUnknownPhotoEnable = (CheckBoxPreference) findPreference(PREF_KEY_CALLER_UNKNOWN_PHOTO_ENABLE);
             mPrefCallerUnknownPhoto = (Preference) findPreference(PREF_KEY_CALLER_UNKNOWN_PHOTO);
 
-            mPrefNetworkModeTileMode = (ListPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_MODE);
-            mPrefNetworkModeTile2G3GMode = (ListPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_2G3G_MODE);
-            mPrefNetworkModeTileLte = (CheckBoxPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_LTE);
-            mPrefNetworkModeTileCdma = (CheckBoxPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_CDMA);
             mPrefQsNetworkModeSimSlot = (ListPreference) findPreference(PREF_KEY_QS_NETWORK_MODE_SIM_SLOT);
             //mPrefQsTileLabelStyle = (ListPreference) findPreference(PREF_KEY_QUICK_SETTINGS_TILE_LABEL_STYLE);
 
@@ -1530,6 +1530,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 appPref.setDialogTitle(appPref.getTitle());
                 appPref.setDefaultSummary(getActivity().getString(R.string.app_picker_none));
                 appPref.setSummary(getActivity().getString(R.string.app_picker_none));
+                appPref.setAllowUnlockAction(true);
+                appPref.setLaunchesFromLockscreen(true);
                 mPrefCatLsShortcuts.addPreference(appPref);
                 if (mPrefs.getString(appPref.getKey(), null) == null) {
                     mPrefs.edit().putString(appPref.getKey(), null).commit();
@@ -1648,6 +1650,12 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             if (Build.VERSION.SDK_INT < 22) {
                 Preference p = findPreference(PREF_KEY_SIGNAL_CLUSTER_NOSIM);
                 if (p != null) mPrefCatSignalCluster.removePreference(p);
+            }
+
+            // SDK21 only
+            if (Build.VERSION.SDK_INT > 21) {
+                Preference p = findPreference(PREF_KEY_QS_ENABLE_DETAIL_VIEW);
+                if (p != null) mPrefCatStatusbarQs.removePreference(p);
             }
 
             // Xposed Bridge 65+ only
@@ -2021,14 +2029,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefCatNavbarDimen.setEnabled(override && mPrefNavbarEnable.isChecked());
             }
 
-            if (key == null || key.equals(PREF_KEY_NETWORK_MODE_TILE_MODE)) {
-                mPrefNetworkModeTileMode.setSummary(mPrefNetworkModeTileMode.getEntry());
-            }
-
-            if (key == null || key.equals(PREF_KEY_NETWORK_MODE_TILE_2G3G_MODE)) {
-                mPrefNetworkModeTile2G3GMode.setSummary(mPrefNetworkModeTile2G3GMode.getEntry());
-            }
-
             if (key == null || key.equals(PREF_KEY_QS_NETWORK_MODE_SIM_SLOT)) {
                 mPrefQsNetworkModeSimSlot.setSummary(
                         String.format(getString(R.string.pref_qs_network_mode_sim_slot_summary),
@@ -2257,6 +2257,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 ListPreference dup = (ListPreference) findPreference(PREF_KEY_LOCKSCREEN_DIRECT_UNLOCK_POLICY);
                 dup.setEnabled(!"OFF".equals(du.getValue()));
                 dup.setSummary(dup.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_CELL_TILE_DATA_TOGGLE)) {
+                ListPreference p = (ListPreference) findPreference(PREF_KEY_CELL_TILE_DATA_TOGGLE);
+                p.setSummary(p.getEntry());
             }
 
             for (String caKey : customAppKeys) {
@@ -2795,20 +2800,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_STATUSBAR_DT2S)) {
                 intent.setAction(ACTION_PREF_STATUSBAR_CHANGED);
                 intent.putExtra(EXTRA_SB_DT2S, prefs.getBoolean(key, false));
-            } else if (key.equals(PREF_KEY_NETWORK_MODE_TILE_MODE)) {
-                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
-                intent.putExtra(EXTRA_NMT_MODE, Integer.valueOf(
-                        prefs.getString(PREF_KEY_NETWORK_MODE_TILE_MODE, "0")));
-            } else if (key.equals(PREF_KEY_NETWORK_MODE_TILE_2G3G_MODE)) {
-                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
-                intent.putExtra(EXTRA_NMT_2G3G_MODE, Integer.valueOf(
-                        prefs.getString(PREF_KEY_NETWORK_MODE_TILE_2G3G_MODE, "0")));
-            } else if (key.equals(PREF_KEY_NETWORK_MODE_TILE_LTE)) {
-                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
-                intent.putExtra(EXTRA_NMT_LTE, prefs.getBoolean(PREF_KEY_NETWORK_MODE_TILE_LTE, false));
-            } else if (key.equals(PREF_KEY_NETWORK_MODE_TILE_CDMA)) {
-                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
-                intent.putExtra(EXTRA_NMT_CDMA, prefs.getBoolean(PREF_KEY_NETWORK_MODE_TILE_CDMA, false));
             } else if (key.equals(PREF_KEY_RINGER_MODE_TILE_MODE)) {
                 intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
                 Set<String> modes = prefs.getStringSet(PREF_KEY_RINGER_MODE_TILE_MODE,
@@ -3078,6 +3069,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_CELL_TILE_DATA_OFF_ICON)) {
                 intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
                 intent.putExtra(EXTRA_CELL_TILE_DATA_OFF_ICON, prefs.getBoolean(key, false));
+            } else if (key.equals(PREF_KEY_CELL_TILE_DATA_TOGGLE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_CELL_TILE_DATA_TOGGLE, prefs.getString(key, "DISABLED"));
             } else if (PREF_KEY_LOCKSCREEN_SHORTCUT.contains(key)) {
                 intent.setAction(ACTION_PREF_LOCKSCREEN_SHORTCUT_CHANGED);
                 intent.putExtra(EXTRA_LS_SHORTCUT_SLOT,
@@ -3108,6 +3102,32 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
                 intent.putExtra(EXTRA_PIE_TRIGIND_COLOR, prefs.getInt(key, 
                         getResources().getColor(R.color.pie_trigind_color)));
+            } else if (key.equals(PREF_KEY_QS_ENABLE_DETAIL_VIEW)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_QS_ENABLE_DETAIL_VIEW, prefs.getBoolean(key, false));
+            } else if (key.equals(PREF_KEY_LOCATION_TILE_QUICK_MODE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_LOCATION_TILE_QUICK_MODE, prefs.getBoolean(key, false));
+            } else if (key.equals(PREF_KEY_NM_TILE_ENABLED_MODES)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                Set<String> modes = prefs.getStringSet(key,
+                        new HashSet<String>(Arrays.asList(new String[] { "0", "1", "2", "10" })));
+                List<String> lmodes = new ArrayList<String>(modes);
+                Collections.sort(lmodes);
+                int[] imodes = new int[lmodes.size()];
+                for (int i = 0; i < lmodes.size(); i++) {
+                    imodes[i] = Integer.valueOf(lmodes.get(i));
+                }
+                intent.putExtra(EXTRA_NM_TILE_ENABLED_MODES, imodes);
+            } else if (key.equals(PREF_KEY_NM_TILE_QUICK_MODE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_NM_TILE_QUICK_MODE, prefs.getBoolean(key, false));
+            } else if (key.equals(PREF_KEY_RINGER_MODE_TILE_QUICK_MODE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_RMT_QUICK_MODE, prefs.getBoolean(key, false));
+            } else if (key.equals(PREF_KEY_STAY_AWAKE_TILE_QUICK_MODE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_SA_QUICK_MODE, prefs.getBoolean(key, false));
             }
             if (intent.getAction() != null) {
                 mPrefs.edit().commit();

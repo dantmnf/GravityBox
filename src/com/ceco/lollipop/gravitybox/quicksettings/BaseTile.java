@@ -26,12 +26,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.ceco.lollipop.gravitybox.GravityBoxSettings;
 import com.ceco.lollipop.gravitybox.ModQsTiles;
 import com.ceco.lollipop.gravitybox.Utils;
+import com.ceco.lollipop.gravitybox.managers.KeyguardStateMonitor;
+import com.ceco.lollipop.gravitybox.managers.SysUiManagers;
 import com.ceco.lollipop.gravitybox.quicksettings.QsTileEventDistributor.QsEventListener;
 
 import de.robv.android.xposed.XSharedPreferences;
@@ -65,9 +68,9 @@ public abstract class BaseTile implements QsEventListener {
     protected boolean mLockedOnly;
     protected boolean mSecured;
     protected boolean mDualMode;
-    protected int mStatusBarState;
     protected boolean mHideOnChange;
     protected float mScalingFactor = 1f;
+    protected KeyguardStateMonitor mKgMonitor;
 
     public BaseTile(Object host, String key, XSharedPreferences prefs,
             QsTileEventDistributor eventDistributor) throws Throwable {
@@ -75,6 +78,7 @@ public abstract class BaseTile implements QsEventListener {
         mKey = key;
         mPrefs = prefs;
         mEventDistributor = eventDistributor;
+        mKgMonitor = SysUiManagers.KeyguardMonitor;
 
         mContext = (Context) XposedHelpers.callMethod(mHost, "getContext");
         mGbContext = Utils.getGbContext(mContext);
@@ -107,6 +111,31 @@ public abstract class BaseTile implements QsEventListener {
         mDualMode = dualTiles.contains(mKey);
 
         mHideOnChange = mPrefs.getBoolean(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS_HIDE_ON_CHANGE, false);
+    }
+
+    private View.OnLongClickListener mLongClick = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            return handleLongClick();
+        }
+    };
+
+    @Override
+    public void onDualModeSet(View tileView, boolean enabled) {
+        if (enabled) {
+            View bgView = (View) XposedHelpers.getObjectField(tileView, "mTopBackgroundView");
+            bgView.setLongClickable(true);
+            bgView.setOnLongClickListener(Build.VERSION.SDK_INT >= 22 ?(OnLongClickListener) 
+                    XposedHelpers.getObjectField(tileView, "mLongClick") : mLongClick);
+        } else if (Build.VERSION.SDK_INT < 22) {
+            tileView.setLongClickable(true);
+            tileView.setOnLongClickListener(mLongClick);
+        }
+    }
+
+    @Override
+    public boolean supportsDualTargets() {
+        return mDualMode;
     }
 
     @Override
@@ -142,6 +171,11 @@ public abstract class BaseTile implements QsEventListener {
     }
 
     @Override
+    public Object getDetailAdapter() {
+        return null;
+    }
+
+    @Override
     public void handleDestroy() {
         mEventDistributor.unregisterListener(this);
         mEventDistributor = null;
@@ -150,20 +184,11 @@ public abstract class BaseTile implements QsEventListener {
         mPrefs = null;
         mContext = null;
         mGbContext = null;
+        mKgMonitor = null;
     }
 
     @Override
     public void onCreateTileView(View tileView) throws Throwable {
-        if (Build.VERSION.SDK_INT < 22) {
-            tileView.setLongClickable(true);
-            tileView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    return handleLongClick();
-                }
-            });
-        }
-
         XposedHelpers.setAdditionalInstanceField(tileView, TILE_KEY_NAME, mKey);
 
         mScalingFactor = QsPanel.getScalingFactor(Integer.valueOf(mPrefs.getString(
@@ -211,18 +236,10 @@ public abstract class BaseTile implements QsEventListener {
     }
 
     @Override
-    public void onStatusBarStateChanged(int state) {
-        final int oldState = mStatusBarState;
-        mStatusBarState = state;
-        if ((mLocked || mLockedOnly || mSecured) && mStatusBarState != oldState) {
+    public void onKeyguardStateChanged() {
+        if (mLocked || mLockedOnly || mSecured) {
             refreshState();
         }
-        if (DEBUG) log(mKey + ": onStatusBarStateChanged(" + state + ")");
-    }
-
-    @Override
-    public void onSecureMethodChanged() {
-        refreshState();
     }
 
     @Override
@@ -308,6 +325,24 @@ public abstract class BaseTile implements QsEventListener {
             XposedHelpers.callMethod(mHost, "collapsePanels");
         } catch (Throwable t) {
             log("Error in collapsePanels: ");
+            XposedBridge.log(t);
+        }
+    }
+
+    public void showDetail(boolean show) {
+        try {
+            XposedHelpers.callMethod(mTile, "showDetail", show);
+        } catch (Throwable t) {
+            log("Error in showDetail: ");
+            XposedBridge.log(t);
+        }
+    }
+
+    public void fireToggleStateChanged(boolean state) {
+        try {
+            XposedHelpers.callMethod(mTile, "fireToggleStateChanged", state);
+        } catch (Throwable t) {
+            log("Error in fireToggleStateChanged: ");
             XposedBridge.log(t);
         }
     }

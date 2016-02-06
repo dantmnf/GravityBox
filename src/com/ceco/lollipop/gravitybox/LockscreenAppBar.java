@@ -32,18 +32,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.ceco.lollipop.gravitybox.managers.SysUiManagers;
 import com.ceco.lollipop.gravitybox.preference.AppPickerPreference;
 import com.ceco.lollipop.gravitybox.shortcuts.ShortcutActivity;
+import com.ceco.lollipop.gravitybox.managers.KeyguardStateMonitor;
 
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
-public class LockscreenAppBar {
+public class LockscreenAppBar implements KeyguardStateMonitor.Listener {
     private static final String TAG = "GB:LockscreenAppBar";
     private static final boolean DEBUG = false;
-
-    public static final String EXTRA_FROM_LOCKSCREEN = "fromLockscreen";
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -60,6 +60,7 @@ public class LockscreenAppBar {
     private boolean mSafeLaunchEnabled;
     private AppInfo mPendingAction;
     private Handler mHandler;
+    private KeyguardStateMonitor mKgMonitor;
 
     public LockscreenAppBar(Context ctx, Context gbCtx, ViewGroup container,
             Object statusBar, XSharedPreferences prefs) {
@@ -74,6 +75,8 @@ public class LockscreenAppBar {
                 GravityBoxSettings.PREF_KEY_LOCKSCREEN_SHORTCUT_SAFE_LAUNCH, false);
 
         initAppSlots();
+        mKgMonitor = SysUiManagers.KeyguardMonitor;
+        mKgMonitor.registerListener(this);
     }
 
     private void initAppSlots() {
@@ -123,14 +126,28 @@ public class LockscreenAppBar {
         mRootView.setVisibility(atLeastOneVisible ? View.VISIBLE : View.GONE);
     }
 
+    @Override
+    public void onKeyguardStateChanged() {
+        for (AppInfo ai : mAppSlots) {
+            if (ai.isUnsafeAction()) {
+                ai.setVisible(!mKgMonitor.isLocked());
+            }
+        }
+    }
+
     private void startActivity(Intent intent) {
-        // we are launching from lock screen
-        intent.putExtra(EXTRA_FROM_LOCKSCREEN, true);
         // if intent is a GB action of broadcast type, handle it directly here
         if (ShortcutActivity.isGbBroadcastShortcut(intent)) {
-            Intent newIntent = new Intent(intent.getStringExtra(ShortcutActivity.EXTRA_ACTION));
-            newIntent.putExtras(intent);
-            mContext.sendBroadcast(newIntent);
+            boolean isLaunchBlocked = mKgMonitor.isShowing() && mKgMonitor.isLocked() &&
+                    !ShortcutActivity.isActionSafe(intent.getStringExtra(
+                            ShortcutActivity.EXTRA_ACTION));
+            if (DEBUG) log("isLaunchBlocked: " + isLaunchBlocked);
+
+            if (!isLaunchBlocked) {
+                Intent newIntent = new Intent(intent.getStringExtra(ShortcutActivity.EXTRA_ACTION));
+                newIntent.putExtras(intent);
+                mContext.sendBroadcast(newIntent);
+            }
         // otherwise start activity dismissing keyguard
         } else {
             try {
@@ -216,6 +233,18 @@ public class LockscreenAppBar {
             } catch (Exception e) {
                 log("Unexpected error: " + e.getMessage());
                 reset();
+            }
+        }
+
+        public boolean isUnsafeAction() {
+            return (mIntent != null &&
+                    !ShortcutActivity.isActionSafe(mIntent.getStringExtra(
+                            ShortcutActivity.EXTRA_ACTION)));
+        }
+
+        public void setVisible(boolean visible) {
+            if (mView != null) {
+                mView.setVisibility(visible ? View.VISIBLE : View.GONE);
             }
         }
 

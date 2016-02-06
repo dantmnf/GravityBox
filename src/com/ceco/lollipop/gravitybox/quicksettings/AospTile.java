@@ -1,6 +1,5 @@
 package com.ceco.lollipop.gravitybox.quicksettings;
 
-import com.ceco.lollipop.gravitybox.ModStatusBar.StatusBarState;
 import com.ceco.lollipop.gravitybox.quicksettings.QsTileEventDistributor.QsEventListener;
 
 import de.robv.android.xposed.XC_MethodHook;
@@ -64,15 +63,18 @@ public abstract class AospTile extends BaseTile implements QsEventListener {
     protected abstract String getClassName();
     public abstract String getAospKey();
 
+    // Tiles can override click functionality
+    // When true is returned, original click handler will be suppressed
+    protected boolean onBeforeHandleClick() {
+        return false;
+    }
+
     @Override
     public void handleUpdateState(Object state, Object arg) {
         final boolean visible = mEnabled &&
-                (!mLocked || !(mStatusBarState != StatusBarState.SHADE &&
-                    mEventDistributor.isKeyguardShowing())) &&
-                (!mLockedOnly || !(mStatusBarState == StatusBarState.SHADE &&
-                    !mEventDistributor.isKeyguardShowing())) &&
-                (!mSecured || !(mStatusBarState != StatusBarState.SHADE &&
-                    mEventDistributor.isKeyguardSecuredAndLocked()));
+                (!mLocked || !mKgMonitor.isShowing()) &&
+                (!mLockedOnly || mKgMonitor.isShowing()) &&
+                (!mSecured || !(mKgMonitor.isShowing() && mKgMonitor.isLocked()));
         XposedHelpers.setBooleanField(state, "visible", visible);
     }
 
@@ -102,6 +104,12 @@ public abstract class AospTile extends BaseTile implements QsEventListener {
 
             mHandleClickHook = XposedHelpers.findAndHookMethod(
                     getClassName(), cl, "handleClick", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    if (onBeforeHandleClick()) {
+                        param.setResult(null);
+                    }
+                }
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     if (mKey.equals(XposedHelpers.getAdditionalInstanceField(

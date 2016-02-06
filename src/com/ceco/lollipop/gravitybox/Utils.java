@@ -18,6 +18,7 @@ package com.ceco.lollipop.gravitybox;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
@@ -34,6 +35,7 @@ import android.hardware.SensorManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.UserHandle;
 import android.os.Vibrator;
 import android.renderscript.Allocation;
 import android.renderscript.Allocation.MipmapControl;
@@ -50,6 +52,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Constructor;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -154,7 +157,7 @@ public class Utils {
     public static boolean isMtkDevice() {
         if (mIsMtkDevice != null) return mIsMtkDevice;
 
-        mIsMtkDevice = Build.HARDWARE.toLowerCase().matches("^mt[68][1-9][1-9][1-9]$") &&
+        mIsMtkDevice = Build.HARDWARE.toLowerCase(Locale.US).matches("^mt[68][1-9][1-9][1-9]$") &&
                 !isMotoXtDevice();
         return mIsMtkDevice;
     }
@@ -171,7 +174,7 @@ public class Utils {
     public static boolean isMotoXtDevice() {
         if (mIsMotoXtDevice != null) return mIsMotoXtDevice;
 
-        String model = Build.MODEL.toLowerCase();
+        String model = Build.MODEL.toLowerCase(Locale.US);
         mIsMotoXtDevice = Build.MANUFACTURER.equalsIgnoreCase("motorola") &&
                 (model.startsWith("xt") ||
                  model.contains("razr") ||
@@ -190,8 +193,8 @@ public class Utils {
     public static boolean isGpeDevice() {
         if (mIsGpeDevice != null) return mIsGpeDevice;
 
-        String productName = Build.PRODUCT.toLowerCase();
-        mIsGpeDevice = Build.DEVICE.toLowerCase().contains("gpe") || productName.contains("google")
+        String productName = Build.PRODUCT.toLowerCase(Locale.US);
+        mIsGpeDevice = Build.DEVICE.toLowerCase(Locale.US).contains("gpe") || productName.contains("google")
                 || productName.contains("ged") || productName.contains("gpe") ||
                 productName.contains("aosp");
         return mIsGpeDevice;
@@ -200,7 +203,7 @@ public class Utils {
     public static boolean isExynosDevice() {
         if (mIsExynosDevice != null) return mIsExynosDevice;
 
-        mIsExynosDevice = Build.HARDWARE.toLowerCase().contains("smdk");
+        mIsExynosDevice = Build.HARDWARE.toLowerCase(Locale.US).contains("smdk");
         return mIsExynosDevice;
     }
 
@@ -555,6 +558,20 @@ public class Utils {
         percentAlpha = Math.min(Math.max(percentAlpha, 0), 100);
         float alpha = (float)percentAlpha / 100f;
         return (alpha == 0 ? 255 : (int)(1-alpha * 255));
+    }
+
+    public static int getCurrentUser() {
+        try {
+            return (int) XposedHelpers.callStaticMethod(ActivityManager.class, "getCurrentUser");
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+            return 0;
+        }
+    }
+
+    public static UserHandle getUserHandle(int userId) throws Exception {
+        Constructor<?> uhConst = XposedHelpers.findConstructorExact(UserHandle.class, int.class);
+        return (UserHandle) uhConst.newInstance(userId);
     }
 
     static class SystemProp extends Utils {

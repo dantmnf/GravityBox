@@ -17,6 +17,7 @@ public class SysUiManagers {
     public static StatusBarIconManager IconManager;
     public static StatusbarQuietHoursManager QuietHoursManager;
     public static AppLauncher AppLauncher;
+    public static KeyguardStateMonitor KeyguardMonitor;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -27,6 +28,8 @@ public class SysUiManagers {
             throw new IllegalArgumentException("Context cannot be null");
         if (prefs == null)
             throw new IllegalArgumentException("Prefs cannot be null");
+
+        createKeyguardMonitor(context);
 
         try {
             BatteryInfoManager = new BatteryInfoManager(context, prefs);
@@ -77,6 +80,16 @@ public class SysUiManagers {
         intentFilter.addAction(com.ceco.lollipop.gravitybox.managers.AppLauncher.ACTION_SHOW_APP_LAUCNHER);
 
         context.registerReceiver(sBroadcastReceiver, intentFilter);
+    }
+
+    public static void createKeyguardMonitor(Context ctx) {
+        if (KeyguardMonitor != null) return;
+        try {
+            KeyguardMonitor = new KeyguardStateMonitor(ctx);
+        } catch (Throwable t) {
+            log("Error creating KeyguardMonitor: ");
+            XposedBridge.log(t);
+        }
     }
 
     private static BroadcastReceiver sBroadcastReceiver = new BroadcastReceiver() {

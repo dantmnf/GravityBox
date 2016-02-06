@@ -1,3 +1,64 @@
+Changelog 5.3.5 - 25/01/2016
+--------------------------------------
+- QuickSettings management:
+--- Implemeted generic "detail view" support which brings new possibilities
+--- Added option for enabling detail view for WiFi and BT tiles on Android 5.0 (experimental)
+--- Location tile (SlimKat): redesigned to support detail view, quick mode and dual mode
+--- NetworkMode tile: redesigned for simplicity and flexibility:
+------ allows user to freely choose network modes of interest tile should support
+------ supports all currently available network modes
+------ supports detail view and quick mode
+------ label indicates current network mode
+--- RingerMode tile: extended to support detail view and quick mode
+--- StayAwake tile: extended to support detail view and quick mode
+--- Hint: use "Tile specific settings" category within QS management to configure new behavior of tiles above
+--- Fixed tiles per row not working right after reboot on some devices
+- Circle battery: improved percent text size and position (thanks to creeve4)
+- Moved battery percent text to the right of battery icon for consistency with header and keyguard
+- Improved support for RTL locales
+- Cleaned up unused resources
+- Other small adjustments (see commit history in project's github)
+- Updated Russian translations (thanks to gaich)
+- Updated Vietnamese translations (thanks to TranDatDT)
+- Updated Ukrainian translations (thanks to burunduk)
+- Small fixes in Dutch translations (thanks to Gijs Timmers)
+
+Changelog 5.3.4 - 13/12/2015
+--------------------------------------
+- QuickSettings management:
+--- added long-press support to dual mode tiles
+--- Cellular tile: added option for defining mobile data toggle behavior
+--- Cellular tile: open cellular network settings on long-press (depends on how mobile data toggle behavior is set)
+--- WiFi tile: open WiFi settings on long-press during dual mode
+--- BlueTooth tile: open BT settings on long-press during dual mode
+--- Added long-press actions to other non-dual stock tiles (Airplane, Cast, Location, Hotspot)
+- Charger sounds: fixed plugged/unplugged sounds being played at the same time on some devices
+- Circle battery: slightly decreased size of percent text
+- Updated Vietnamese translations (thanks to TranDatDT)
+
+Changelog 5.3.3 - 27/11/2015
+--------------------------------------
+- Lockscreen shortcuts:
+--- don't allow unsafe GB actions (connectivity/location related) when device locked
+--- dynamically show/hide unsafe GB actions based on current lock screen security state
+--- don't offer GB actions which don't make sense in lock screen context (kill app, switch to last app, ...)
+--- offer GravityBox Unlock action
+--- dismiss lockscreen for certain GB actions (Google Now, Show recent apps)
+- QuickSettings management:
+--- improved security logic
+--- fixed secured tiles showing when lock screen activity is in the foreground (such as Camera)
+- Navbar: fixed custom key sometimes disappearing
+- Changed style of circle battery indicator (thanks to creeve4)
+- AppLauncher: don't show unsafe GB actions (connectivity/location related) when device locked
+- Added 0.35x and 0.4x animation scales (thanks to fonz93)
+- UNC: lowered minimum value for LED off setting to zero (thanks to creeve4)
+- Launcher tweaks: fixed scaling of Launcher icons and labels for the latest Google App versions
+- Added Persian translations (thanks to Masoud.ser)
+- Updated Russian translations (thanks to gaich)
+- Updated French translations (thanks to ch-vox)
+- Updated Hungarian translations (thanks to benjoe1)
+- Updated Chinese (Simplified) translations (thanks to liveasx)
+
 Changelog 5.3.2 - 31/10/2015
 --------------------------------------
 - QuickSettings management:
@@ -900,7 +961,7 @@ Changelog 3.1.6 - 13/06/2014
 --------------------------------------
 - Statusbar brightness control revised (thanks to jacknicholson)
 --- Prevent brightness changes after notifications panel has been opened
---- Don't adjust brightness for swipes <45° from vertical.
+--- Don't adjust brightness for swipes <45ï¿½ from vertical.
 - AppPicker preference: added support for choosing custom icons
 --- long-press on preference icon triggers custom icon pick
 --- single-press preserved (shows list of predefined icons)
