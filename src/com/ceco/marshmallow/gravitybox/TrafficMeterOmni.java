@@ -74,7 +74,6 @@ public class TrafficMeterOmni extends TrafficMeterAbstract {
     private boolean mAutoHide;
     private int mAutoHideThreshold;
     
-    private boolean mCanReadFromFile;
 
     private Handler mTrafficHandler = new Handler() {
         @Override
@@ -295,13 +294,6 @@ public class TrafficMeterOmni extends TrafficMeterAbstract {
         }
     }
     
-    /*
-      Receive                                                |  Transmit
-      face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
-      0     0        1       2    3    4    5     6          7         8        9       10   11   12   13    14      15
-     */
-    private static boolean canReadFromFile() {
-        return new File("/proc/net/dev").exists();
-    }
+
     
 }

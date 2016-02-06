@@ -17,6 +17,7 @@
 package com.ceco.marshmallow.gravitybox;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -68,7 +69,7 @@ public abstract class TrafficMeterAbstract extends TextView
     protected boolean mShowOnlyForMobileData;
     protected boolean mIsTrackingProgress;
     protected boolean mAllowInLockscreen;
-
+    protected boolean mCanReadFromFile;
     protected static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
     }
@@ -112,6 +113,8 @@ public abstract class TrafficMeterAbstract extends TextView
                 }
             };
         }
+        
+        mCanReadFromFile = canReadFromFile();
     }
 
     public void initialize(XSharedPreferences prefs) throws Throwable {
@@ -355,5 +358,13 @@ public abstract class TrafficMeterAbstract extends TextView
             return new long[]{0, 0};
         }
         return new long[]{rxBytes, txBytes};
+    }
+    /*
+    Receive                                                |  Transmit
+    face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+    0     0        1       2    3    4    5     6          7         8        9       10   11   12   13    14      15
+   */
+    protected static boolean canReadFromFile() {
+    	return new File("/proc/net/dev").exists();
     }
 }
