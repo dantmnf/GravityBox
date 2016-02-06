@@ -49,11 +49,9 @@
     <string name="quick_settings_expanded_desktop_disabled">Vypnuté</string>
     <string name="quick_settings_expanded_desktop_normal">Normálna plocha</string>
     <string name="quick_settings_expanded_desktop_expanded">Rozšírená plocha</string>
-    <string name="quick_settings_stay_awake_on">Bdenie zap</string>
-    <string name="quick_settings_stay_awake_off">Bdenie vyp</string> 
+    <string name="quick_settings_stay_awake_on">Bdenie zap</string> 
     <string name="quick_settings_nfc_on">NFC zap</string>
     <string name="quick_settings_nfc_off">NFC vyp</string>
-    <string name="quick_settings_camera_error_connect">Nie je možné spustiť fotoaparát</string>
     <string name="quick_settings_usb_tether_off">Odpojené</string>
     <string name="quick_settings_usb_tether_connected">Zdieľanie vyp</string>
     <string name="quick_settings_usb_tether_on">Zdieľanie zap</string>
@@ -468,9 +466,6 @@
     <string name="unicode_stripping_non_encodable">Konverzia nekódovateľných znakov</string>
     <string name="unicode_stripping_all">Konverzia všetkých znakov</string>
 
-    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Režim dlaždice typu mobilnej siete</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Povoliť všetky rotácie</string>
 
@@ -508,8 +503,7 @@
 
     <!-- Quick unlock -->
     <string name="pref_lockscreen_quick_unlock_title">Rýchle odomknutie</string>
-    <string name="pref_lockscreen_quick_unlock_summary">Odomknúť automaticky po zadaní správneho PIN/hesla, bez potreby stlačenia ENTER
-        Podporuje maximálne 6 znakov.</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Odomknúť automaticky po zadaní správneho PIN/hesla, bez potreby stlačenia ENTER</string>
 
     <!-- Clock Day Of Week style -->
     <string name="clock_dow_disabled">Vypnuté</string>
@@ -613,14 +607,6 @@
     <string name="pref_navbar_key_color_title">Farba tlačidiel</string>
     <string name="pref_navbar_key_glow_color_title">Efekt tlačidiel</string>
 
-    <!-- Transparency manager mode -->
-    <string name="pref_tm_mode_title">Režim priehľadnosti</string>
-    <string name="pref_tm_mode_summary">Vyžaduje reštart</string>
-    <string name="tm_mode_disabled">Vypnutý</string>
-    <string name="tm_mode_statusbar">Stavový riadok</string>
-    <string name="tm_mode_navbar">Navigačná lišta</string>
-    <string name="tm_mode_full">Stavový riadok aj navigačná lišta</string>
-
     <!-- Secondary signal icon color for MTK Dual SIMs -->
     <string name="pref_statusbar_icon_color_secondary_title">Farba sekundárneho signálu</string>
     <string name="pref_statusbar_icon_color_secondary_summary">Nahradí pôvodnú oranžovú verziu ikony signálu</string>
@@ -647,9 +633,6 @@
     <string name="pref_about_gplus_title">Google+ komunita</string>
     <string name="pref_about_gplus_summary">Dotykom otvoríte GravityBox Google+ komunitu</string>
 
-    <!-- Network mode tile: Allow LTE network mode -->
-    <string name="pref_network_mode_tile_lte_title">Povoliť LTE typ siete</string>
-
     <!-- HW Keys Navigation Bar warning -->
     <string name="hwkey_navbar_warning">V prípade potreby použitia akcií pre softvérové tlačidlá navigačnej lišty je 
         potrebné zapnúť \'Obísť systémové nastavenia\' v menu Nastavenia navigačnej lišty</string>
@@ -675,12 +658,10 @@
     <string name="pref_volume_panel_timeout_title">Časovač panela hlasitosti</string>
 
     <!-- Ringer tile modes -->
-    <string name="pref_qs_ringer_mode_title">Nastavenia dlaždice Režimu zvonenia</string>
     <string name="ringer_mode_silent">Prioritné</string>
     <string name="ringer_mode_vibrate">Vibrovať</string>
     <string name="ringer_mode_sound">Zvoniť</string>
     <string name="ringer_mode_sound_vibrate">Zvoniť a vibrovať</string>
-    <string name="ringer_mode_none">Žiadne</string>
 
     <!-- Screen recording -->
     <string name="screenrecord_notif_ticker">Prebieha záznam obrazovky</string>
@@ -763,9 +744,6 @@
     <string name="pref_cat_signal_cluster_title">Nastavenia ikon signálu</string>
     <string name="pref_signal_cluster_data_activity_title">Indikátory dátového prenosu</string>
     <string name="pref_signal_cluster_data_activity_summary">Indikácia dátového prenosu v ikonách mobilných dát a WiFi (vyžaduje reštart)</string>
-
-    <!-- Network mode tile: CDMA support -->
-    <string name="pref_network_mode_tile_cdma_title">Použiť CDMA režimy siete</string>
 
     <!--  HW Key Action: Toggle auto rotation -->
     <string name="hwkey_action_auto_rotation">Prepnúť auto rotáciu</string>
@@ -1059,7 +1037,6 @@
     <string name="pref_quick_pulldown_size_title">Šírka aktívneho okraja</string>
 
     <!-- Stay Awake Tile modes -->
-    <string name="pref_qs_stay_awake_title">Nastavenia dlaždice Bdenie</string>
     <string name="stay_awake_15s">15s</string>
     <string name="stay_awake_30s">30s</string>
     <string name="stay_awake_1m">1m</string>
@@ -1391,7 +1368,6 @@
     <string name="pref_lc_active_screen_mode_title">Režim aktívnej obrazovky</string>
     <string name="lc_active_screen_mode_disabled">Vypnutá</string>
     <string name="lc_active_screen_mode_nothing">Len zapnúť obrazovku</string>
-    <string name="lc_active_screen_mode_headsup">@string/pref_cat_lc_heads_up_title</string>
 
     <!-- QS: Remote display tile -->
     <string name="qs_tile_remote_display">Vzdialená obrazovka</string>
@@ -1409,15 +1385,8 @@
     <!-- Key actions: custom action -->
     <string name="hwkey_action_custom">Vlastná akcia</string>
 
-    <!-- UNC Active Screen: heads up timeout -->
-    <string name="pref_unc_as_headsup_timeout_title">Heads up časovač</string>
-    <string name="pref_unc_as_headsup_timeout_summary">Po akej dobe zavrieť notifikačné okno. 0 = po odomknutí zariadenia.</string>
-
     <!-- QS: support for MSIM -->
     <string name="qs_tile_data_usage_2">Mobilný signál 2</string>
-
-    <!-- Heads Up: Transparency level -->
-    <string name="pref_heads_up_alpha_title">Úroveň priehľadnosti</string>
 
     <!-- Charger unplugged sound -->
     <string name="pref_charger_unplugged_sound_title">Zvuk odpojenia napájania</string>
@@ -1452,16 +1421,6 @@
     <string name="charging_led_emulated">Emulovaný</string>
     <string name="charging_led_disabled">Vypnutý</string>
 
-    <!-- Heads up snooze timer -->
-    <string name="pref_heads_up_snooze_title">Povoliť tlačidlo driemania</string>
-    <string name="headsup_snooze_all_apps">Pre všetky aplikácie</string>
-    <string name="headsup_snooze_app">Nastaviť heads up driemanie pre %s</string>
-    <string name="pref_heads_up_snooze_reset_title">Nulovať časovače driemania</string>
-    <string name="pref_heads_up_snooze_timer_title">Predvolený časovač driemania</string>
-    <string name="pref_heads_up_snooze_timer_summary">Časovač, ktorý sa automaticky nastaví po stlačení tlačidla driemania. 
-        Dlhé stlačenie tlačidla driemania zobrazí dialóg pre manuálne zadanie časovača.</string>
-    <string name="headsup_snooze_timer_set">Heads up predvolený časovač driemania nastavený pre %s</string>
-
     <!-- Quiet hours week days -->
     <string name="pref_lc_qh_weekdays_title">Nastaviť pracovné dni</string>
 
@@ -1488,11 +1447,6 @@
     <!-- MSIM signal cluster: Hide SIM labels -->
     <string name="pref_signal_cluster_hide_sim_labels_title">Skryť SIM identifikátory</string>
     <string name="pref_signal_cluster_hide_sim_labels_summary">Vyžaduje reštart</string>
-
-    <!-- QS: network mode tile 2g+3g mode -->
-    <string name="pref_network_mode_tile_2g3g_mode_title">2G+3G režim</string>
-    <string name="nmt_2g3g_mode_wcdma">GSM/WCDMA preferované (3G/2G)</string>
-    <string name="nmt_2g3g_mode_auto">GSM/WCDMA automaticky (2G/3G)</string>
 
     <!-- Power menu: expanded desktop in power menu -->
     <string name="pref_powermenu_expanded_desktop_title">Rozšírená plocha v menu napájania</string>
@@ -1771,5 +1725,69 @@
     <!-- Permission denial message -->
     <string name="permission_denied_msg">Rozhodli ste sa odmietnuť niektoré z oprávnení.
         Súvisiace funkcie nebudú fungovať.</string>
+    <string name="permission_denied_hide_title">Už nezobrazovať</string>
+
+    <!-- Cellular tile Mobile data toggle -->
+    <string name="pref_cell_tile_data_toggle_title">Prepínač mobilných dát</string>
+    <string name="tile_data_toggle_disabled">Vypnutý</string>
+    <string name="tile_data_toggle_singlepress">Na ťuknutie</string>
+    <string name="tile_data_toggle_longpress">Na dlhé podržanie</string>
+
+    <!-- Lockscreen: Imprint mode -->
+    <string name="pref_lockscreen_imprint_mode_title">Imprint režim</string>
+    <string name="imprint_mode_default">Zobudiť a odomknúť (pôvodné)</string>
+    <string name="imprint_mode_wake_only">Len zobudiť</string>
+
+    <!-- Lockscreen: Bottom-left action -->
+    <string name="pref_lockscreen_bleft_action_title">Ľavá-dolná akcia</string>
+    <string name="ls_bleft_action_default">Pôvodná</string>
+    <string name="ls_bleft_action_phone">Telefón</string>
+
+    <!-- Lockscreen: Quick unlock PIN length -->
+    <string name="pref_lockscreen_pin_length_title">Dĺžka PIN</string>
+    <string name="pref_lockscreen_pin_length_summary">Rýchle odomknutie potrebuje vedieť presnú dĺžku PIN
+        pre spoľahlivé fungovanie</string>
+
+    <!-- Power: Camera vibration pattern -->
+    <string name="pref_power_camera_vibrate_pattern_title">Vzorec vibrácie fotoaparátu</string>
+    <string name="pref_power_camera_vibrate_pattern_summary">Definuje vzorez vibrácie počas spustenia
+        fotoaparátu tlačidlom napájania. Hodnota vo forme čiarkou oddelených párov dĺžky vypnutia/zapnutia
+        vibrácie v milisekundách. 
+        Ponechajte prázdne pre pôvodnú vibráciu. Zadajte 0 pre vypnutie vibrácie.</string>
+
+    <!-- QS: common quick mode option -->
+    <string name="pref_tile_quick_mode_title">Rýchly režim</string>
+    <string name="pref_tile_enabled_modes_title">Podporované typy</string>
+
+    <!-- DND tile settings -->
+    <string name="pref_cat_qs_dnd_tile_title">Nastavenia dlaždice Nerušiť</string>
+    <string name="pref_dnd_tile_quick_mode_summary">Umožňuje prepínať medzi typmi nerušenia jednoduchým ťuknutím na dlaždicu</string>
+    <string name="pref_dnd_tile_enabled_modes_summary">Definuje, medzi ktorými typmi nerušenia prepínať</string>
+    <string name="dnd_tile_em_priority">Iba prioritné</string>
+    <string name="dnd_tile_em_alarms">Iba budíky</string>
+    <string name="dnd_tile_em_silence">Úplné ticho</string>
+    <string name="pref_dnd_tile_duration_mode_title">Prednastavená doba trvania</string>
+    <string name="dnd_tile_dm_manual">Dokým nevypnete</string>
+    <string name="dnd_tile_dm_alarm">Do nasledujúceho budíka</string>
+    <string name="dnd_tile_dm_custom">Vlastná</string>
+    <string name="pref_dnd_tile_duration_title">Nastaviť vlastnú dobu trvania</string>
+
+    <!-- Location tile (Slimkat) settings -->
+    <string name="pref_cat_qs_location_tile_title">Nastavenia dlaždice Poloha (SlimKat)</string>
+    <string name="pref_location_tile_quick_mode_summary">Umožňuje prepínať medzi typmi sledovania polohy jednoduchým ťuknutím na dlaždicu</string>
+
+    <!-- Network mode tile settings -->
+    <string name="pref_nm_tile_enabled_modes_summary">Definuje, ktoré typy siete dlaždica podporuje</string>
+    <string name="pref_nm_tile_quick_mode_summary">Umožňuje prepínať medzi typmi siete jednoduchým ťuknutím na dlaždicu</string>
+
+    <!-- Ringer mode tile settings -->
+    <string name="pref_cat_qs_rm_tile_title">Nastavenia dlaždice Režim zvonenia</string>
+    <string name="pref_rm_tile_enabled_modes_summary">Definuje, ktoré typy zvonenia dlaždica podporuje</string>
+    <string name="pref_rm_tile_quick_mode_summary">Umožňuje prepínať medzi typmi zvonenia jednoduchým ťuknutím na dlaždicu</string>
+
+    <!-- Stay awake tile settings -->
+    <string name="pref_cat_qs_sa_tile_title">Nastavenia dlaždice Bdenie</string>
+    <string name="pref_sa_tile_enabled_modes_summary">Definuje, ktoré typy časovača vypnutia obrazovky dlaždica podporuje</string>
+    <string name="pref_sa_tile_quick_mode_summary">Umožňuje prepínať medzi typmi časovača vypnutia obrazovky jednoduchým ťuknutím na dlaždicu</string>
 
 </resources>

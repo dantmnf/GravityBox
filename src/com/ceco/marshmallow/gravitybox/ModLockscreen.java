@@ -68,6 +68,7 @@ public class ModLockscreen {
     private static final String CLASS_KG_VIEW_MANAGER = "com.android.systemui.statusbar.phone.StatusBarKeyguardViewManager";
     private static final String CLASS_CARRIER_TEXT = CLASS_PATH + ".CarrierText";
     private static final String CLASS_NOTIF_ROW = "com.android.systemui.statusbar.ExpandableNotificationRow";
+    private static final String CLASS_KG_BOTTOM_AREA_VIEW = "com.android.systemui.statusbar.phone.KeyguardBottomAreaView";
 
     private static final boolean DEBUG = false;
     private static final boolean DEBUG_KIS = false;
@@ -76,6 +77,7 @@ public class ModLockscreen {
 
     private static enum DirectUnlock { OFF, STANDARD, SEE_THROUGH };
     private static enum DirectUnlockPolicy { DEFAULT, NOTIF_NONE, NOTIF_ONGOING };
+    private static enum BottomAction { DEFAULT, PHONE };
 
     private static XSharedPreferences mPrefs;
     private static XSharedPreferences mQhPrefs;
@@ -174,6 +176,9 @@ public class ModLockscreen {
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                     mGbContext = Utils.getGbContext(mContext);
+                    if (SysUiManagers.KeyguardMonitor == null) {
+                        SysUiManagers.createKeyguardMonitor(mContext, mPrefs);
+                    }
                     mKgMonitor = SysUiManagers.KeyguardMonitor;
                     mKgMonitor.setMediator(param.thisObject);
 
@@ -287,7 +292,6 @@ public class ModLockscreen {
                             (TextView) XposedHelpers.getObjectField(param.thisObject, "mPasswordEntry");
                     if (passwordEntry == null) return;
 
-                    mOldEntryLen = 0;
                     passwordEntry.addTextChangedListener(new TextWatcher() {
                         @Override
                         public void afterTextChanged(Editable s) {
@@ -309,7 +313,6 @@ public class ModLockscreen {
                     final View passwordEntry = 
                             (View) XposedHelpers.getObjectField(param.thisObject, "mPasswordEntry");
                     if (passwordEntry != null) {
-                        mOldEntryLen = 0;
                         XposedHelpers.setAdditionalInstanceField(passwordEntry, "gbPINView",
                                 param.thisObject);
                     }
@@ -450,6 +453,18 @@ public class ModLockscreen {
                 XposedHelpers.findAndHookMethod(CLASS_CARRIER_TEXT, classLoader, "updateCarrierText",
                         carrierTextHook);
             }
+
+            XposedHelpers.findAndHookMethod(CLASS_KG_BOTTOM_AREA_VIEW, classLoader,
+                    "canLaunchVoiceAssist", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (BottomAction.valueOf(mPrefs.getString(
+                            GravityBoxSettings.PREF_KEY_LOCKSCREEN_BLEFT_ACTION, "DEFAULT")) ==
+                                BottomAction.PHONE) {
+                        param.setResult(false);
+                    }
+                }
+            });
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
@@ -518,13 +533,10 @@ public class ModLockscreen {
         }
     };
 
-    private static int mOldEntryLen = 0;
     private static void doQuickUnlock(final Object securityView, final String entry) {
-        if (entry.length() < 4 || entry.length() > 6) return;
-        if (entry.length() < mOldEntryLen) {
-            mOldEntryLen = entry.length();
-            return;
-        }
+        if (entry.length() != mPrefs.getInt(
+                GravityBoxSettings.PREF_KEY_LOCKSCREEN_PIN_LENGTH, 4)) return;
+
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {

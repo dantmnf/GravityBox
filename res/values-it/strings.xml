@@ -64,10 +64,8 @@
     <string name="quick_settings_expanded_desktop_normal">Normale</string>
     <string name="quick_settings_expanded_desktop_expanded">Esteso</string>
     <string name="quick_settings_stay_awake_on">Sempre acceso</string>
-    <string name="quick_settings_stay_awake_off">Sempre acceso Off</string>
     <string name="quick_settings_nfc_on">NFC On</string>
     <string name="quick_settings_nfc_off">NFC Off</string>
-    <string name="quick_settings_camera_error_connect">Fotocamera non trovata</string>
     <string name="quick_settings_usb_tether_off">Disconnesso</string>
     <string name="quick_settings_usb_tether_connected">Tethering Off</string>
     <string name="quick_settings_usb_tether_on">Tethering On</string>
@@ -481,12 +479,6 @@
     <string name="unicode_stripping_non_encodable">Elimina caratteri non convertibili</string>
     <string name="unicode_stripping_all">Elimina tutti i caratteri unicode</string>
 
-    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Modalità rete</string>
-    <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
-    <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
-    <string name="nm_tile_mode3">2G/3G/(LTE)</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Abilita tutte le rotazioni</string>
 
@@ -633,14 +625,6 @@
     <string name="pref_navbar_key_color_title">Colore tasto navigazione</string>
     <string name="pref_navbar_key_glow_color_title">Colore tasto navigazione selezionato</string>
 
-    <!-- Transparency manager mode -->
-    <string name="pref_tm_mode_title">Gestore trasparenze</string>
-    <string name="pref_tm_mode_summary">Richiede riavvio</string>
-    <string name="tm_mode_disabled">Disabilitato</string>
-    <string name="tm_mode_statusbar">Barra di stato</string>
-    <string name="tm_mode_navbar">Barra di navigazione</string>
-    <string name="tm_mode_full">Entrambe</string>
-
     <!-- Secondary signal icon color for MTK Dual SIMs -->
     <string name="pref_statusbar_icon_color_secondary_title">Colore segnale sim2</string>
     <string name="pref_statusbar_icon_color_secondary_summary">Sovrascrivi il colore predefinito arancione dell\'icona</string>
@@ -667,9 +651,6 @@
     <string name="pref_about_gplus_title">Google+</string>
     <string name="pref_about_gplus_summary">Tocca per entrare nella community di GravityBox su Google+</string>
 
-    <!-- Network mode tile: Allow LTE network mode -->
-    <string name="pref_network_mode_tile_lte_title">Consenti modalità di rete LTE</string>
- 
     <!-- HW Keys Navigation Bar warning -->
     <string name="hwkey_navbar_warning">Per abilitare il supporto per le azioni della barra di navigazione è necessario
         sostituire le impostazioni di sistema predefinite nel menù barra di navigazione</string>
@@ -695,7 +676,6 @@
     <string name="pref_volume_panel_timeout_title">Timeout pannello volume</string>
 
     <!-- Ringer tile modes -->
-    <string name="pref_qs_ringer_mode_title">Profili audio</string>
     <string name="ringer_mode_silent">Silenzioso</string>
     <string name="ringer_mode_vibrate">Vibrazione</string>
     <string name="ringer_mode_sound">Suoneria</string>
@@ -783,9 +763,6 @@
     <string name="pref_signal_cluster_data_activity_title">Mostra attività dati</string>
     <string name="pref_signal_cluster_data_activity_summary">Indica attività dati su rete mobile o WiFi (richiede riavvio)</string>
 
-    <!-- Network mode tile: CDMA support -->
-    <string name="pref_network_mode_tile_cdma_title">Usa modalità di rete CDMA</string>
-    
     <!--  HW Key Action: Toggle auto rotation -->
     <string name="hwkey_action_auto_rotation">Rotazione automatica on/off</string>
     <string name="hwkey_action_auto_rotation_enabled">Rotazione automatica abilitata</string>
@@ -1078,7 +1055,6 @@
     <string name="pref_quick_pulldown_size_title">Dimensione bordo visualizzazione rapida</string>
     
     <!-- Stay Awake Tile modes -->
-    <string name="pref_qs_stay_awake_title">Modalità casella Timeout display</string>
     <string name="stay_awake_15s">15s</string>
     <string name="stay_awake_30s">30s</string>
     <string name="stay_awake_1m">1m</string>
@@ -1409,7 +1385,6 @@
     <string name="pref_lc_active_screen_mode_title">Modalità Active Screen</string>
     <string name="lc_active_screen_mode_disabled">Disabilitata</string>
     <string name="lc_active_screen_mode_nothing">Accendi solo schermo</string>
-    <string name="lc_active_screen_mode_headsup">@string/pref_cat_lc_heads_up_title</string>
 
     <!-- QS: Remote display tile -->
     <string name="qs_tile_remote_display">Trasmetti schermo</string>
@@ -1427,15 +1402,8 @@
     <!-- Key actions: custom action -->
     <string name="hwkey_action_custom">Azioni personalizzate</string>
 
-    <!-- UNC Active Screen: heads up timeout -->
-    <string name="pref_unc_as_headsup_timeout_title">Timeout notifiche a comparsa</string>
-    <string name="pref_unc_as_headsup_timeout_summary">Specifica quanto tempo la notifica deve essere mostrata. 0 = finchè non viene sbloccato il dispositivo.</string>
-
     <!-- QS: support for MSIM -->
     <string name="qs_tile_data_usage_2">Utilizzo Dati 2</string>
-
-    <!-- Heads Up: Transparency level -->
-    <string name="pref_heads_up_alpha_title">Livello trasparenza</string>
 
     <!-- Charger unplugged sound -->
     <string name="pref_charger_unplugged_sound_title">Suono disinserimento cavo</string>
@@ -1470,16 +1438,6 @@
     <string name="charging_led_emulated">Attivo</string>
     <string name="charging_led_disabled">Disattivo</string>
 
-    <!-- Heads up snooze timer -->
-    <string name="pref_heads_up_snooze_title">Nascondi con pulsante</string>
-    <string name="headsup_snooze_all_apps">Imposta per tutte le app</string>
-    <string name="headsup_snooze_app">Nascondi le notifiche a comparsa per %s</string>
-    <string name="pref_heads_up_snooze_reset_title">Reimposta valori ritardo predefiniti</string>
-    <string name="pref_heads_up_snooze_timer_title">Valore ritardo predefinito</string>
-    <string name="pref_heads_up_snooze_timer_summary">La notifica a comparsa viene nascosta automaticamente se si tocca una sola volta l\'apposita icona. 
-        Per decidere per quanto nascondere una notifca a comparsa, tenere premuto sull\'apposita icona.</string>
-    <string name="headsup_snooze_timer_set">Le notifiche a comparsa saranno nascoste di default per %s</string>
-
     <!-- Quiet hours week days -->
     <string name="pref_lc_qh_weekdays_title">Imposta giorni della settimana</string>
 
@@ -1505,11 +1463,6 @@
     <!-- MSIM signal cluster: Hide SIM labels -->
     <string name="pref_signal_cluster_hide_sim_labels_title">Nascondi nomi operatore</string>
     <string name="pref_signal_cluster_hide_sim_labels_summary">Richiede riavvio</string>
-
-    <!-- QS: network mode tile 2g+3g mode -->
-    <string name="pref_network_mode_tile_2g3g_mode_title">Modalità 2G+3G</string>
-    <string name="nmt_2g3g_mode_wcdma">GSM/WCDMA Preferito (3G/2G)</string>
-    <string name="nmt_2g3g_mode_auto">GSM/WCDMA Auto (2G/3G)</string>
 
     <!-- Power menu: expanded desktop in power menu -->
     <string name="pref_powermenu_expanded_desktop_title">Desktop esteso in menu spegnimento</string>

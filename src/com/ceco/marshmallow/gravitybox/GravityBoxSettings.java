@@ -242,11 +242,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_LOCKSCREEN_SHOW_PATTERN_ERROR = "pref_lockscreen_show_pattern_error";
     public static final String PREF_KEY_LOCKSCREEN_MENU_KEY = "pref_lockscreen_menu_key2";
     public static final String PREF_KEY_LOCKSCREEN_QUICK_UNLOCK = "pref_lockscreen_quick_unlock";
+    public static final String PREF_KEY_LOCKSCREEN_PIN_LENGTH = "pref_lockscreen_pin_length";
     public static final String PREF_KEY_LOCKSCREEN_DIRECT_UNLOCK = "pref_lockscreen_direct_unlock2";
     public static final String PREF_KEY_LOCKSCREEN_DIRECT_UNLOCK_POLICY = "pref_lockscreen_direct_unlock_policy";
     public static final String PREF_KEY_LOCKSCREEN_SMART_UNLOCK = "pref_lockscreen_smart_unlock";
+    public static final String PREF_KEY_LOCKSCREEN_IMPRINT_MODE = "pref_lockscreen_imprint_mode";
     public static final String PREF_KEY_LOCKSCREEN_D2TS = "pref_lockscreen_dt2s";
     public static final String PREF_KEY_LOCKSCREEN_CARRIER_TEXT = "pref_lockscreen_carrier_text";
+    public static final String PREF_KEY_LOCKSCREEN_BLEFT_ACTION = "pref_lockscreen_bleft_action";
     public static final String ACTION_LOCKSCREEN_SETTINGS_CHANGED = "gravitybox.intent.action.LOCKSCREEN_SETTINGS_CHANGED";
 
     public static final String PREF_CAT_KEY_LOCKSCREEN_SHORTCUTS = "pref_cat_lockscreen_shortcuts";
@@ -583,18 +586,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_CAT_KEY_PHONE_MESSAGING = "pref_cat_phone_messaging";
     public static final String PREF_CAT_KEY_PHONE_MOBILE_DATA = "pref_cat_phone_mobile_data";
 
-    public static final String PREF_KEY_NETWORK_MODE_TILE_MODE = "pref_network_mode_tile_mode";
-    public static final String PREF_KEY_NETWORK_MODE_TILE_2G3G_MODE = "pref_network_mode_tile_2g3g_mode";
-    public static final String PREF_KEY_NETWORK_MODE_TILE_LTE = "pref_network_mode_tile_lte";
-    public static final String PREF_KEY_NETWORK_MODE_TILE_CDMA = "pref_network_mode_tile_cdma";
     public static final String PREF_KEY_RINGER_MODE_TILE_MODE = "pref_qs_ringer_mode2";
+    public static final String PREF_KEY_RINGER_MODE_TILE_QUICK_MODE = "pref_rm_tile_quick_mode";
     public static final String PREF_STAY_AWAKE_TILE_MODE = "pref_qs_stay_awake";
-    public static final String EXTRA_NMT_MODE = "networkModeTileMode";
-    public static final String EXTRA_NMT_2G3G_MODE = "networkModeTile2G3GMode";
-    public static final String EXTRA_NMT_LTE = "networkModeTileLte";
-    public static final String EXTRA_NMT_CDMA = "networkModeTileCdma";
+    public static final String PREF_KEY_STAY_AWAKE_TILE_QUICK_MODE = "pref_sa_tile_quick_mode";
     public static final String EXTRA_RMT_MODE = "ringerModeTileMode";
+    public static final String EXTRA_RMT_QUICK_MODE = "ringerModeTileQuickMode";
     public static final String EXTRA_SA_MODE = "stayAwakeTileMode";
+    public static final String EXTRA_SA_QUICK_MODE = "stayAwakeTileQuickMode";
 
     public static final String PREF_KEY_DISPLAY_ALLOW_ALL_ROTATIONS = "pref_display_allow_all_rotations";
     public static final String ACTION_PREF_DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED = 
@@ -722,11 +721,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
     public static final String PREF_KEY_HEADS_UP_MASTER_SWITCH = "pref_heads_up_master_switch";
     public static final String PREF_KEY_HEADS_UP_TIMEOUT = "pref_heads_up_timeout";
-    //public static final String PREF_KEY_HEADS_UP_ALPHA = "pref_heads_up_alpha";
-    //public static final String PREF_KEY_HEADS_UP_SNOOZE = "pref_heads_up_snooze";
-    //public static final String PREF_KEY_HEADS_UP_SNOOZE_RESET = "pref_heads_up_snooze_reset";
-    //public static final String ACTION_HEADS_UP_SNOOZE_RESET = "gravitybox.intent.action.HEADS_UP_SNOOZE_RESET";
-    //public static final String PREF_KEY_HEADS_UP_SNOOZE_TIMER = "pref_heads_up_snooze_timer";
     public static final String ACTION_HEADS_UP_SETTINGS_CHANGED = "gravitybox.intent.action.HEADS_UP_SETTINGS_CHANGED";
 
     public static final String PREF_KEY_HEADSET_ACTION_PLUG = "pref_headset_action_plug";
@@ -737,9 +731,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
     public static final String PREF_KEY_POWER_PROXIMITY_WAKE = "pref_power_proximity_wake";
     public static final String PREF_KEY_POWER_PROXIMITY_WAKE_IGNORE_CALL = "pref_power_proximity_wake_ignore_call";
+    public static final String PREF_KEY_POWER_CAMERA_VP = "pref_power_camera_vibrate_pattern";
     public static final String ACTION_PREF_POWER_CHANGED = "gravitybox.intent.action.POWER_CHANGED";
     public static final String EXTRA_POWER_PROXIMITY_WAKE = "powerProximityWake";
     public static final String EXTRA_POWER_PROXIMITY_WAKE_IGNORE_CALL = "powerProximityWakeIgnoreCall";
+    public static final String EXTRA_POWER_CAMERA_VP = "powerCameraVibratePattern";
 
     public static final String PREF_KEY_STATUSBAR_DOWNLOAD_PROGRESS = "pref_statusbar_download_progress";
     public static final String PREF_KEY_STATUSBAR_DOWNLOAD_PROGRESS_ANIMATED = "pref_statusbar_download_progress_animated";
@@ -792,6 +788,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_CAT_KEY_CELL_TILE = "pref_cat_qs_cell_tile";
     public static final String PREF_KEY_CELL_TILE_DATA_OFF_ICON = "pref_cell_tile_data_off_icon";
     public static final String EXTRA_CELL_TILE_DATA_OFF_ICON = "cellTileDataOffIcon";
+    public static final String PREF_KEY_CELL_TILE_DATA_TOGGLE = "pref_cell_tile_data_toggle";
+    public static final String EXTRA_CELL_TILE_DATA_TOGGLE = "cellTileDataToggle";
 
     public static final String PREF_CAT_KEY_BATTERY_TILE = "pref_cat_qs_battery_tile";
     public static final String PREF_KEY_BATTERY_TILE_PERCENTAGE = "pref_battery_tile_percentage";
@@ -802,6 +800,23 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_BATTERY_TILE_SAVER_INDICATE = "batteryTileSaverIndicate";
     public static final String EXTRA_BATTERY_TILE_TEMP_UNIT = "batteryTileTempUnit";
     public static final String EXTRA_BATTERY_TILE_SWAP_ACTIONS = "batteryTileSwapActions";
+
+    public static final String PREF_KEY_DND_TILE_QUICK_MODE = "pref_dnd_tile_quick_mode";
+    public static final String PREF_KEY_DND_TILE_ENABLED_MODES = "pref_dnd_tile_enabled_modes";
+    public static final String PREF_KEY_DND_TILE_DURATION_MODE = "pref_dnd_tile_duration_mode";
+    public static final String PREF_KEY_DND_TILE_DURATION = "pref_dnd_tile_duration";
+    public static final String EXTRA_DND_TILE_QUICK_MODE = "dndTileQuickMode";
+    public static final String EXTRA_DND_TILE_ENABLED_MODES = "dndTileEnabledModes";
+    public static final String EXTRA_DND_TILE_DURATION_MODE = "dndTileDurationMode";
+    public static final String EXTRA_DND_TILE_DURATION = "dndTileDuration";
+
+    public static final String PREF_KEY_LOCATION_TILE_QUICK_MODE = "pref_location_tile_quick_mode";
+    public static final String EXTRA_LOCATION_TILE_QUICK_MODE = "locationTileQuickMode";
+
+    public static final String PREF_KEY_NM_TILE_ENABLED_MODES = "pref_nm_tile_enabled_modes";
+    public static final String PREF_KEY_NM_TILE_QUICK_MODE = "pref_nm_tile_quick_mode";
+    public static final String EXTRA_NM_TILE_ENABLED_MODES = "nmTileEnabledModes";
+    public static final String EXTRA_NM_TILE_QUICK_MODE = "nmTileQuickMode";
 
     // MTK fixes
     public static final String PREF_CAT_KEY_MTK_FIXES = "pref_cat_mtk_fixes";
@@ -884,12 +899,15 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             PREF_KEY_LOCKSCREEN_BACKGROUND_BLUR_INTENSITY,
             PREF_KEY_LOCKSCREEN_BACKGROUND_OPACITY,
             PREF_KEY_LOCKSCREEN_QUICK_UNLOCK,
+            PREF_KEY_LOCKSCREEN_PIN_LENGTH,
             PREF_KEY_LOCKSCREEN_DIRECT_UNLOCK,
             PREF_KEY_LOCKSCREEN_DIRECT_UNLOCK_POLICY,
             PREF_KEY_LOCKSCREEN_SMART_UNLOCK,
+            PREF_KEY_LOCKSCREEN_IMPRINT_MODE,
             PREF_KEY_LOCKSCREEN_D2TS,
             PREF_KEY_LOCKSCREEN_CARRIER_TEXT,
-            PREF_KEY_LOCKSCREEN_SHOW_PATTERN_ERROR
+            PREF_KEY_LOCKSCREEN_SHOW_PATTERN_ERROR,
+            PREF_KEY_LOCKSCREEN_BLEFT_ACTION
     ));
 
     private static final List<String> headsUpKeys = new ArrayList<String>(Arrays.asList(
@@ -975,6 +993,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
         super.onCreate(savedInstanceState);
 
+        // fix folder permissions
+        SettingsManager.getInstance(this).fixFolderPermissionsAsync();
+        
         // refuse to run if there's GB with old package name still installed
         // prompt to uninstall previous package and finish
         if (Utils.isAppInstalled(this, "com.ceco.lollipop.gravitybox")) {
@@ -1177,10 +1198,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private PreferenceCategory mPrefCatPhoneTelephony;
         private PreferenceCategory mPrefCatPhoneMessaging;
         private PreferenceCategory mPrefCatPhoneMobileData;
-        private ListPreference mPrefNetworkModeTileMode;
-        private ListPreference mPrefNetworkModeTile2G3GMode;
-        private CheckBoxPreference mPrefNetworkModeTileLte;
-        private CheckBoxPreference mPrefNetworkModeTileCdma;
         private ListPreference mPrefQsNetworkModeSimSlot;
         private ListPreference mPrefSbSignalColorMode;
         private CheckBoxPreference mPrefUnplugTurnsOnScreen;
@@ -1253,6 +1270,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private ListPreference mPrefSbdpMode;
         private PreferenceScreen mPrefCatCellTile;
         private ListPreference mPrefBatteryTileTempUnit;
+        private EditTextPreference mPrefPowerCameraVp;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -1443,10 +1461,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCallerUnknownPhotoEnable = (CheckBoxPreference) findPreference(PREF_KEY_CALLER_UNKNOWN_PHOTO_ENABLE);
             mPrefCallerUnknownPhoto = (Preference) findPreference(PREF_KEY_CALLER_UNKNOWN_PHOTO);
 
-            mPrefNetworkModeTileMode = (ListPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_MODE);
-            mPrefNetworkModeTile2G3GMode = (ListPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_2G3G_MODE);
-            mPrefNetworkModeTileLte = (CheckBoxPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_LTE);
-            mPrefNetworkModeTileCdma = (CheckBoxPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_CDMA);
             mPrefQsNetworkModeSimSlot = (ListPreference) findPreference(PREF_KEY_QS_NETWORK_MODE_SIM_SLOT);
             //mPrefQsTileLabelStyle = (ListPreference) findPreference(PREF_KEY_QUICK_SETTINGS_TILE_LABEL_STYLE);
 
@@ -1555,6 +1569,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCatCellTile = (PreferenceScreen) findPreference(PREF_CAT_KEY_CELL_TILE);
 
             mPrefBatteryTileTempUnit = (ListPreference) findPreference(PREF_KEY_BATTERY_TILE_TEMP_UNIT); 
+
+            mPrefPowerCameraVp = (EditTextPreference) findPreference(PREF_KEY_POWER_CAMERA_VP);
 
             // MTK fixes (deprecated)
             mPrefCatMtkFixes = (PreferenceScreen) findPreference(PREF_CAT_KEY_MTK_FIXES);
@@ -1768,11 +1784,18 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             for (int res : grantResults) {
                 showWarning = res != PackageManager.PERMISSION_GRANTED;
             }
+            showWarning &= !mPrefs.getBoolean("permission_denied_hide", false);
             if (showWarning) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.important)
                 .setMessage(R.string.permission_denied_msg)
                 .setPositiveButton(android.R.string.ok, null)
+                .setNegativeButton(R.string.permission_denied_hide_title, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPrefs.edit().putBoolean("permission_denied_hide", true).commit();
+                    }
+                })
                 .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
@@ -1986,14 +2009,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefCatNavbarKeys.setEnabled(override && mPrefNavbarEnable.isChecked());
                 mPrefCatNavbarColor.setEnabled(override && mPrefNavbarEnable.isChecked());
                 mPrefCatNavbarDimen.setEnabled(override && mPrefNavbarEnable.isChecked());
-            }
-
-            if (key == null || key.equals(PREF_KEY_NETWORK_MODE_TILE_MODE)) {
-                mPrefNetworkModeTileMode.setSummary(mPrefNetworkModeTileMode.getEntry());
-            }
-
-            if (key == null || key.equals(PREF_KEY_NETWORK_MODE_TILE_2G3G_MODE)) {
-                mPrefNetworkModeTile2G3GMode.setSummary(mPrefNetworkModeTile2G3GMode.getEntry());
             }
 
             if (key == null || key.equals(PREF_KEY_QS_NETWORK_MODE_SIM_SLOT)) {
@@ -2212,6 +2227,28 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 ListPreference dup = (ListPreference) findPreference(PREF_KEY_LOCKSCREEN_DIRECT_UNLOCK_POLICY);
                 dup.setEnabled(!"OFF".equals(du.getValue()));
                 dup.setSummary(dup.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_CELL_TILE_DATA_TOGGLE)) {
+                ListPreference p = (ListPreference) findPreference(PREF_KEY_CELL_TILE_DATA_TOGGLE);
+                p.setSummary(p.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_LOCKSCREEN_IMPRINT_MODE)) {
+                ListPreference p = (ListPreference) findPreference(PREF_KEY_LOCKSCREEN_IMPRINT_MODE);
+                p.setSummary(p.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_LOCKSCREEN_BLEFT_ACTION)) {
+                ListPreference p = (ListPreference) findPreference(PREF_KEY_LOCKSCREEN_BLEFT_ACTION);
+                p.setSummary(p.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_DND_TILE_DURATION_MODE)) {
+                ListPreference p = (ListPreference) findPreference(PREF_KEY_DND_TILE_DURATION_MODE);
+                p.setSummary(p.getEntry());
+                Preference dp = findPreference(PREF_KEY_DND_TILE_DURATION);
+                dp.setEnabled(p.isEnabled() && "CUSTOM".equals(p.getValue()));
             }
 
             for (String caKey : customAppKeys) {
@@ -2734,20 +2771,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_STATUSBAR_DT2S)) {
                 intent.setAction(ACTION_PREF_STATUSBAR_CHANGED);
                 intent.putExtra(EXTRA_SB_DT2S, prefs.getBoolean(key, false));
-            } else if (key.equals(PREF_KEY_NETWORK_MODE_TILE_MODE)) {
-                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
-                intent.putExtra(EXTRA_NMT_MODE, Integer.valueOf(
-                        prefs.getString(PREF_KEY_NETWORK_MODE_TILE_MODE, "0")));
-            } else if (key.equals(PREF_KEY_NETWORK_MODE_TILE_2G3G_MODE)) {
-                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
-                intent.putExtra(EXTRA_NMT_2G3G_MODE, Integer.valueOf(
-                        prefs.getString(PREF_KEY_NETWORK_MODE_TILE_2G3G_MODE, "0")));
-            } else if (key.equals(PREF_KEY_NETWORK_MODE_TILE_LTE)) {
-                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
-                intent.putExtra(EXTRA_NMT_LTE, prefs.getBoolean(PREF_KEY_NETWORK_MODE_TILE_LTE, false));
-            } else if (key.equals(PREF_KEY_NETWORK_MODE_TILE_CDMA)) {
-                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
-                intent.putExtra(EXTRA_NMT_CDMA, prefs.getBoolean(PREF_KEY_NETWORK_MODE_TILE_CDMA, false));
             } else if (key.equals(PREF_KEY_RINGER_MODE_TILE_MODE)) {
                 intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
                 Set<String> modes = prefs.getStringSet(PREF_KEY_RINGER_MODE_TILE_MODE,
@@ -3014,6 +3037,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_CELL_TILE_DATA_OFF_ICON)) {
                 intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
                 intent.putExtra(EXTRA_CELL_TILE_DATA_OFF_ICON, prefs.getBoolean(key, false));
+            } else if (key.equals(PREF_KEY_CELL_TILE_DATA_TOGGLE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_CELL_TILE_DATA_TOGGLE, prefs.getString(key, "DISABLED"));
             } else if (PREF_KEY_LOCKSCREEN_SHORTCUT.contains(key)) {
                 intent.setAction(ACTION_PREF_LOCKSCREEN_SHORTCUT_CHANGED);
                 intent.putExtra(EXTRA_LS_SHORTCUT_SLOT,
@@ -3044,6 +3070,52 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
                 intent.putExtra(EXTRA_PIE_TRIGIND_COLOR, prefs.getInt(key, 
                         getResources().getColor(R.color.pie_trigind_color)));
+            } else if (key.equals(PREF_KEY_POWER_CAMERA_VP)) {
+                intent.setAction(ACTION_PREF_POWER_CHANGED);
+                intent.putExtra(EXTRA_POWER_CAMERA_VP, prefs.getString(key, null));
+            } else if (key.equals(PREF_KEY_DND_TILE_QUICK_MODE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_DND_TILE_QUICK_MODE, prefs.getBoolean(key, false));
+            } else if (key.equals(PREF_KEY_DND_TILE_ENABLED_MODES)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                Set<String> modes = prefs.getStringSet(key,
+                        new HashSet<String>(Arrays.asList(new String[] { "1", "2", "3" })));
+                List<String> lmodes = new ArrayList<String>(modes);
+                Collections.sort(lmodes);
+                int[] imodes = new int[lmodes.size()];
+                for (int i = 0; i < lmodes.size(); i++) {
+                    imodes[i] = Integer.valueOf(lmodes.get(i));
+                }
+                intent.putExtra(EXTRA_DND_TILE_ENABLED_MODES, imodes);
+            } else if (key.equals(PREF_KEY_DND_TILE_DURATION_MODE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_DND_TILE_DURATION_MODE, prefs.getString(key, "MANUAL"));
+            } else if (key.equals(PREF_KEY_DND_TILE_DURATION)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_DND_TILE_DURATION, prefs.getInt(key, 60));
+            } else if (key.equals(PREF_KEY_LOCATION_TILE_QUICK_MODE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_LOCATION_TILE_QUICK_MODE, prefs.getBoolean(key, false));
+            } else if (key.equals(PREF_KEY_NM_TILE_ENABLED_MODES)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                Set<String> modes = prefs.getStringSet(key,
+                        new HashSet<String>(Arrays.asList(new String[] { "0", "1", "2", "10" })));
+                List<String> lmodes = new ArrayList<String>(modes);
+                Collections.sort(lmodes);
+                int[] imodes = new int[lmodes.size()];
+                for (int i = 0; i < lmodes.size(); i++) {
+                    imodes[i] = Integer.valueOf(lmodes.get(i));
+                }
+                intent.putExtra(EXTRA_NM_TILE_ENABLED_MODES, imodes);
+            } else if (key.equals(PREF_KEY_NM_TILE_QUICK_MODE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_NM_TILE_QUICK_MODE, prefs.getBoolean(key, false));
+            } else if (key.equals(PREF_KEY_RINGER_MODE_TILE_QUICK_MODE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_RMT_QUICK_MODE, prefs.getBoolean(key, false));
+            } else if (key.equals(PREF_KEY_STAY_AWAKE_TILE_QUICK_MODE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_SA_QUICK_MODE, prefs.getBoolean(key, false));
             }
             if (intent.getAction() != null) {
                 mPrefs.edit().commit();
@@ -3066,7 +3138,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
         @Override
         public boolean onPreferenceChange(Preference pref, Object newValue) {
-            if (pref == mPrefVkVibratePattern) {
+            if (pref == mPrefVkVibratePattern || pref == mPrefPowerCameraVp) {
                 if (newValue == null || ((String)newValue).isEmpty()) return true;
                 try {
                     Utils.csvToLongArray((String)newValue);

@@ -44,6 +44,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.service.notification.NotificationListenerService.RankingMap;
@@ -76,6 +77,7 @@ public class ModStatusBar {
     private static final String CLASS_BAR_TRANSITIONS = "com.android.systemui.statusbar.phone.BarTransitions";
     private static final String CLASS_SBI_CTRL = "com.android.systemui.statusbar.phone.StatusBarIconController";
     private static final String CLASS_NOTIF_DATA_ENTRY = "com.android.systemui.statusbar.NotificationData$Entry";
+    private static final String CLASS_ASSIST_MANAGER = "com.android.systemui.assist.AssistManager";
     private static final boolean DEBUG = false;
     private static final boolean DEBUG_LAYOUT = false;
 
@@ -128,6 +130,7 @@ public class ModStatusBar {
     private static boolean mDisablePeek;
     private static GestureDetector mGestureDetector;
     private static boolean mDt2sEnabled;
+    private static long[] mCameraVp;
 
     // Brightness control
     private static boolean mBrightnessControlEnabled;
@@ -225,6 +228,9 @@ public class ModStatusBar {
                     mBatterySaverIndicationDisabled = intent.getBooleanExtra(
                             GravityBoxSettings.EXTRA_BS_INDICATION_DISABLE, false);
                 }
+            } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_POWER_CHANGED) &&
+                    intent.hasExtra(GravityBoxSettings.EXTRA_POWER_CAMERA_VP)) {
+                setCameraVibratePattern(intent.getStringExtra(GravityBoxSettings.EXTRA_POWER_CAMERA_VP));
             }
         }
     };
@@ -548,6 +554,7 @@ public class ModStatusBar {
                     GravityBoxSettings.PREF_KEY_BATTERY_SAVER_INDICATION_DISABLE, false);
             mDisablePeek = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_DISABLE_PEEK, false);
             mDt2sEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_DT2S, false);
+            setCameraVibratePattern(prefs.getString(GravityBoxSettings.PREF_KEY_POWER_CAMERA_VP, null));
 
             if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_SIGNAL_CLUSTER_DEM, false)) {
                 StatusbarSignalCluster.disableSignalExclamationMarks(classLoader);
@@ -625,6 +632,7 @@ public class ModStatusBar {
                     intentFilter.addAction(GravityBoxSettings.ACTION_BATTERY_SAVER_CHANGED);
                     intentFilter.addAction(Intent.ACTION_SCREEN_ON);
                     intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_POWER_CHANGED);
                     if (Utils.isMtkDevice()) {
                         intentFilter.addAction(BatteryStyleController.ACTION_MTK_BATTERY_PERCENTAGE_SWITCH);
                     }
@@ -973,6 +981,47 @@ public class ModStatusBar {
             } catch (Throwable t) {
                 XposedBridge.log(t);
             }
+
+            // Camera vibrate pattern
+            try {
+                XposedHelpers.findAndHookMethod(CLASS_PHONE_STATUSBAR, classLoader,
+                        "vibrateForCameraGesture", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        if (mCameraVp == null) {
+                            return;
+                        } else if (mCameraVp.length == 1 && mCameraVp[0] == 0) {
+                            param.setResult(null);
+                        } else {
+                            Vibrator v = (Vibrator) XposedHelpers.getObjectField(param.thisObject, "mVibrator");
+                            v.vibrate(mCameraVp, -1);
+                            param.setResult(null);
+                        }
+                    }
+                });
+            } catch (Throwable t) {
+                // ignore as some earlier 6.0 releases lack that functionality
+            }
+
+            // Search assist SystemUI crash workaround for disabled navbar
+            try {
+                XposedHelpers.findAndHookMethod(CLASS_ASSIST_MANAGER, classLoader,
+                        "startAssist", Bundle.class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        Object orbView = XposedHelpers.getObjectField(param.thisObject, "mView");
+                        if (orbView == null) {
+                            XposedHelpers.callMethod(param.thisObject, "updateAssistInfo");
+                            if (XposedHelpers.getObjectField(param.thisObject, "mAssistComponent") != null) {
+                                XposedHelpers.callMethod(param.thisObject, "startAssistInternal", param.args[0]);
+                                param.setResult(null);
+                            }
+                        }
+                    }
+                });
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+            }
         }
         catch (Throwable t) {
             XposedBridge.log(t);
@@ -998,7 +1047,7 @@ public class ModStatusBar {
             mLayoutCenter.addView(mClock.getClock());
             if (DEBUG) log("Clock set to center position");
         } else {
-            mClock.getClock().setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+            mClock.getClock().setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
             mClock.getClock().setLayoutParams(new LinearLayout.LayoutParams(
                     LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
             mClock.resetOriginalPaddingLeft();
@@ -1251,6 +1300,21 @@ public class ModStatusBar {
             log("Error launching assigned app for long-press on clock: " + e.getMessage());
         } catch (Throwable t) {
             XposedBridge.log(t);
+        }
+    }
+
+    private static void setCameraVibratePattern(String value) {
+        if (value == null || value.isEmpty()) {
+            mCameraVp = null;
+        } else if ("0".equals(value)) {
+            mCameraVp = new long[] {0};
+        } else {
+            try {
+                mCameraVp = Utils.csvToLongArray(value);
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+                mCameraVp = null;
+            }
         }
     }
 }

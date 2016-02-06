@@ -64,10 +64,8 @@
     <string name="quick_settings_expanded_desktop_normal">Normal</string>
     <string name="quick_settings_expanded_desktop_expanded">Utvidet</string>
     <string name="quick_settings_stay_awake_on">Forbli Våken På</string>
-    <string name="quick_settings_stay_awake_off">Forbli Våken Av</string>
     <string name="quick_settings_nfc_on">NFC På</string>
     <string name="quick_settings_nfc_off">NFC Av</string>
-    <string name="quick_settings_camera_error_connect">Kan ikke koble til kamera</string>
     <string name="quick_settings_usb_tether_off">Frakoblet</string>
     <string name="quick_settings_usb_tether_connected">USB Deling Av</string>
     <string name="quick_settings_usb_tether_on">USB Deling</string>
@@ -474,12 +472,6 @@
     <string name="pref_cat_phone_telephony_title">Telephony</string>
     <string name="pref_cat_phone_mobile_data_title">Mobile data</string>
 
-    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Network mode tile mode</string>
-    <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
-    <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
-    <string name="nm_tile_mode3">2G/3G/(LTE)</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Allow all rotations</string>
 
@@ -626,14 +618,6 @@
     <string name="pref_navbar_key_color_title">Navigation key color</string>
     <string name="pref_navbar_key_glow_color_title">Navigation key glow color</string>
 
-    <!-- Transparency manager mode -->
-    <string name="pref_tm_mode_title">Transparency manager mode</string>
-    <string name="pref_tm_mode_summary">Requires reboot</string>
-    <string name="tm_mode_disabled">Disabled</string>
-    <string name="tm_mode_statusbar">Statusbar</string>
-    <string name="tm_mode_navbar">Navigation bar</string>
-    <string name="tm_mode_full">Both</string>
-
     <!-- Secondary signal icon color for MTK Dual SIMs -->
     <string name="pref_statusbar_icon_color_secondary_title">Secondary signal color</string>
     <string name="pref_statusbar_icon_color_secondary_summary">Overrides stock orange signal icon</string>
@@ -660,9 +644,6 @@
     <string name="pref_about_gplus_title">Google+ community</string>
     <string name="pref_about_gplus_summary">Touch to visit GravityBox Google+ community</string>
 
-    <!-- Network mode tile: Allow LTE network mode -->
-    <string name="pref_network_mode_tile_lte_title">Allow LTE network mode</string>
-
     <!-- HW Keys Navigation Bar warning -->
     <string name="hwkey_navbar_warning">In order to enable actions support for navigation bar, it is necessary 
         to override system defaults in Navigation bar tweaks menu</string>
@@ -688,7 +669,6 @@
     <string name="pref_volume_panel_timeout_title">Volume panel timeout</string>
 
     <!-- Ringer tile modes -->
-    <string name="pref_qs_ringer_mode_title">Ringer mode tile mode</string>
     <string name="ringer_mode_silent">Stille</string>
     <string name="ringer_mode_vibrate">Vibrasjon</string>
     <string name="ringer_mode_sound">Lys</string>
@@ -775,9 +755,6 @@
     <string name="pref_cat_signal_cluster_title">Signal cluster settings</string>
     <string name="pref_signal_cluster_data_activity_title">Enable data activity</string>
     <string name="pref_signal_cluster_data_activity_summary">Indicates data activity on mobile and WiFi icons (requires reboot)</string>
-
-    <!-- Network mode tile: CDMA support -->
-    <string name="pref_network_mode_tile_cdma_title">Use CDMA network modes</string>
 
     <!--  HW Key Action: Toggle auto rotation -->
     <string name="hwkey_action_auto_rotation">Toggle auto rotation</string>
@@ -1071,7 +1048,6 @@
     <string name="pref_quick_pulldown_size_title">Quick pulldown size</string>
 
     <!-- Stay Awake Tile modes -->
-    <string name="pref_qs_stay_awake_title">Stay awake tile mode</string>
     <string name="stay_awake_15s">15s</string>
     <string name="stay_awake_30s">30s</string>
     <string name="stay_awake_1m">1m</string>

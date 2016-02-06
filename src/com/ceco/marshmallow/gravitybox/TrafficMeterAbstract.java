@@ -93,9 +93,9 @@ public abstract class TrafficMeterAbstract extends TextView
         lParams.setMarginStart(mMargin);
         lParams.setMarginEnd(mMargin);
         setLayoutParams(lParams);
-        setTextAppearance(context, context.getResources().getIdentifier(
+        setTextAppearance(context.getResources().getIdentifier(
                 "TextAppearance.StatusBar.Clock", "style", PACKAGE_NAME));
-        setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+        setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
 
         if (!Utils.isWifiOnly(getContext())) {
             mPhone = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
@@ -252,7 +252,10 @@ public abstract class TrafficMeterAbstract extends TextView
         if ((flags & StatusBarIconManager.FLAG_ICON_COLOR_CHANGED) != 0) {
             setTextColor(colorInfo.coloringEnabled ?
                     colorInfo.iconColor[0] : colorInfo.defaultIconColor);
-        } else if ((flags & StatusBarIconManager.FLAG_ICON_ALPHA_CHANGED) != 0) {
+        } else if ((flags & StatusBarIconManager.FLAG_ICON_TINT_CHANGED) != 0) {
+            setTextColor(colorInfo.iconTint);
+        }
+        if ((flags & StatusBarIconManager.FLAG_ICON_ALPHA_CHANGED) != 0) {
             setAlpha(colorInfo.alphaSignalCluster);
         }
     }

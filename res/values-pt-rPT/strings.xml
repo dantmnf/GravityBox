@@ -49,10 +49,8 @@
     <string name="quick_settings_expanded_desktop_normal">Normal</string>
     <string name="quick_settings_expanded_desktop_expanded">Expandido</string>
     <string name="quick_settings_stay_awake_on">Manter ligado</string>
-    <string name="quick_settings_stay_awake_off">Não manter ligado</string>
     <string name="quick_settings_nfc_on">NFC ativado</string>
     <string name="quick_settings_nfc_off">NFC desativado</string>
-    <string name="quick_settings_camera_error_connect">Não foi possível ligação com a câmara</string>
     <string name="quick_settings_usb_tether_off">Desligado</string>
     <string name="quick_settings_usb_tether_connected">Associação desativada</string>
     <string name="quick_settings_usb_tether_on">Associação ativada</string>
@@ -468,12 +466,6 @@
     <string name="unicode_stripping_non_encodable">Remover caracteres não encriptáveis</string>
     <string name="unicode_stripping_all">Remover todos os caracteres unicode</string>
 
-    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Modo do painel Modo de Rede</string>
-    <string name="nm_tile_mode1">2G/2G+3G/3G/(4G)</string>
-    <string name="nm_tile_mode2">2G/2G+3G/(4G)</string>
-    <string name="nm_tile_mode3">2G/3G/(4G)</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Permitir todas as orientações</string>
 
@@ -620,14 +612,6 @@
     <string name="pref_navbar_key_color_title">Cor das teclas</string>
     <string name="pref_navbar_key_glow_color_title">Cor das teclas ao pressionar</string>
 
-    <!-- Transparency manager mode -->
-    <string name="pref_tm_mode_title">Modo de gestão de transparências</string>
-    <string name="pref_tm_mode_summary">Permite definir o modo de gestão de transparências (necessário reiniciar)</string>
-    <string name="tm_mode_disabled">Desativado</string>
-    <string name="tm_mode_statusbar">Barra de status</string>
-    <string name="tm_mode_navbar">Barra de navegação</string>
-    <string name="tm_mode_full">Ambas</string>
-
     <!-- Secondary signal icon color for MTK Dual SIMs -->
     <string name="pref_statusbar_icon_color_secondary_title">Cor das barras de sinal secundárias</string>
     <string name="pref_statusbar_icon_color_secondary_summary">Permite substituir a cor laranja das barras de sinal secundárias</string>
@@ -654,9 +638,6 @@
     <string name="pref_about_gplus_title">Comunidade Google+</string>
     <string name="pref_about_gplus_summary">Carregue para visitar a comunidade GravityBox no Google+</string>
 
-    <!-- Network mode tile: Allow LTE network mode -->
-    <string name="pref_network_mode_tile_lte_title">Permitir modo de rede 4G (LTE)</string>
-
     <!-- HW Keys Navigation Bar warning -->
     <string name="hwkey_navbar_warning">Para ativar ações relacionadas com a barra de navegação, é necessário 
         ignorar predefinições de sistema no menu de ajustes da mesma</string>
@@ -682,7 +663,6 @@
     <string name="pref_volume_panel_timeout_title">Temporização do painel de volume</string>
 
     <!-- Ringer tile modes -->
-    <string name="pref_qs_ringer_mode_title">Modo do painel Modo de Toque</string>
     <string name="ringer_mode_silent">Silêncio</string>
     <string name="ringer_mode_vibrate">Vibrar</string>
     <string name="ringer_mode_sound">Tocar</string>
@@ -765,9 +745,6 @@
     <string name="pref_cat_signal_cluster_title">Definições do agregador de sinal</string>
     <string name="pref_signal_cluster_data_activity_title">Ativar atividade de dados</string>
     <string name="pref_signal_cluster_data_activity_summary">Permite exibir a atividade de dados nos indicadores de dados moóvel e Wi-Fi (necessário reiniciar)</string>
-
-    <!-- Network mode tile: CDMA support -->
-    <string name="pref_network_mode_tile_cdma_title">Utilizar modos de rede CDMA</string>
 
     <!--  HW Key Action: Toggle auto rotation -->
     <string name="hwkey_action_auto_rotation">Comutar rotação automática</string>
@@ -1061,7 +1038,6 @@
     <string name="pref_quick_pulldown_size_title">Àrea de acesso rápido</string>
 
     <!-- Stay Awake Tile modes -->
-    <string name="pref_qs_stay_awake_title">Modo do painel Manter ligado</string>
     <string name="stay_awake_15s">15s</string>
     <string name="stay_awake_30s">30s</string>
     <string name="stay_awake_1m">1m</string>
@@ -1391,7 +1367,6 @@
     <string name="pref_lc_active_screen_mode_title">Modo Ecrã ativo</string>
     <string name="lc_active_screen_mode_disabled">Desativado</string>
     <string name="lc_active_screen_mode_nothing">Ligar ecrã unicamente</string>
-    <string name="lc_active_screen_mode_headsup">@string/pref_cat_lc_heads_up_title</string>
 
     <!-- QS: Remote display tile -->
     <string name="qs_tile_remote_display">Ecrã remoto</string>
@@ -1409,15 +1384,8 @@
     <!-- Key actions: custom action -->
     <string name="hwkey_action_custom">Ação personalizada</string>
 
-    <!-- UNC Active Screen: heads up timeout -->
-    <string name="pref_unc_as_headsup_timeout_title">Temporização das notificações flutuantes</string>
-    <string name="pref_unc_as_headsup_timeout_summary">Permite definir por quanto tempo deverá ser mostrada a notificação (0 = até desbloquear)</string>
-
     <!-- QS: support for MSIM -->
     <string name="qs_tile_data_usage_2">Utilização de dados 2</string>
-
-    <!-- Heads Up: Transparency level -->
-    <string name="pref_heads_up_alpha_title">Nível de transparência</string>
 
     <!-- Charger unplugged sound -->
     <string name="pref_charger_unplugged_sound_title">Som ao desligar carregador</string>
@@ -1452,16 +1420,6 @@
     <string name="charging_led_emulated">Através de simulação</string>
     <string name="charging_led_disabled">Desativada</string>
 
-    <!-- Heads up snooze timer -->
-    <string name="pref_heads_up_snooze_title">Ativar possibilidade de adiar</string>
-    <string name="headsup_snooze_all_apps">Ativar em todas as aplicações</string>
-    <string name="headsup_snooze_app">Definir temporizador para adiamento de %s</string>
-    <string name="pref_heads_up_snooze_reset_title">Limpar temporizadores</string>
-    <string name="pref_heads_up_snooze_timer_title">Temporizador por defeito</string>
-    <string name="pref_heads_up_snooze_timer_summary">Permite definir o temporizador por defeito a aplicar automaticamente ao carregar para adiar a notificação. 
-        Ao manter pressionado o botão de adiamento é possível escolher um temporizador costumizado.</string>
-    <string name="headsup_snooze_timer_set">Temporizador por defeito das notificações definido por %s</string>
-
     <!-- Quiet hours week days -->
     <string name="pref_lc_qh_weekdays_title">Definir dias da semana</string>
 
@@ -1486,11 +1444,6 @@
     <!-- MSIM signal cluster: Hide SIM labels -->
     <string name="pref_signal_cluster_hide_sim_labels_title">Ocultar etiquetas dos cartões SIM</string>
     <string name="pref_signal_cluster_hide_sim_labels_summary">Necessário reiniciar</string>
-
-    <!-- QS: network mode tile 2g+3g mode -->
-    <string name="pref_network_mode_tile_2g3g_mode_title">Modo 2G+3G</string>
-    <string name="nmt_2g3g_mode_wcdma">GSM/WCDMA Preferêncial (3G/2G)</string>
-    <string name="nmt_2g3g_mode_auto">GSM/WCDMA Automático (2G/3G)</string>
 
     <!-- Power menu: expanded desktop in power menu -->
     <string name="pref_powermenu_expanded_desktop_title">Ambiente de trabalho expandido no Menu Desligar</string>

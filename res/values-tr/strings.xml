@@ -449,12 +449,6 @@
     <string name="unicode_stripping_non_encodable">Çevrilmeyen karakterleri çıkar</string>
     <string name="unicode_stripping_all">Tüm unicode karakterleri çıkar</string>
 
-    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Ağ modları</string>
-    <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
-    <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
-    <string name="nm_tile_mode3">2G/3G/(LTE)</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Tüm yönlere izin ver</string>
 
@@ -594,14 +588,6 @@
     <string name="pref_navbar_key_color_title">Gezinme tuşu renkleri</string>
     <string name="pref_navbar_key_glow_color_title">Gezinme tuşu parlama rengi</string>
 
-    <!-- Transparency manager mode -->
-    <string name="pref_tm_mode_title">Transparanlık yöneticisi modu</string>
-    <string name="pref_tm_mode_summary">Yeniden başlatma gerektirir</string>
-    <string name="tm_mode_disabled">Devre dışı</string>
-    <string name="tm_mode_statusbar">Durum çubuğu</string>
-    <string name="tm_mode_navbar">Gezinme çubuğu</string>
-    <string name="tm_mode_full">İkiside</string>
-
     <!-- Secondary signal icon color for MTK Dual SIMs -->
     <string name="pref_statusbar_icon_color_secondary_title">İkinci sinyal ikonu rengi</string>
     <string name="pref_statusbar_icon_color_secondary_summary">İkinci stok simgesinin rengini ayarlar</string>
@@ -628,9 +614,6 @@
     <string name="pref_about_gplus_title">Google+ topluluğu</string>
     <string name="pref_about_gplus_summary">GravityBox Google+ topluluğunu ziyaret etmek için dokunun</string>
 
-    <!-- Network mode tile: Allow LTE network mode -->
-    <string name="pref_network_mode_tile_lte_title">LTE ağ moduna izin ver</string>
-
     <!-- HW Keys Navigation Bar warning -->
     <string name="hwkey_navbar_warning">In order to enable actions support for navigation bar, it is necessary 
         to override system defaults in Navigation bar tweaks menu</string>
@@ -656,7 +639,6 @@
     <string name="pref_volume_panel_timeout_title">Ses paneli zaman aşımı</string>
 
     <!-- Ringer tile modes -->
-    <string name="pref_qs_ringer_mode_title">Zil sesi modu karesi modu</string>
     <string name="ringer_mode_silent">Sessiz</string>
     <string name="ringer_mode_vibrate">Titreşim</string>
     <string name="ringer_mode_sound">Ses</string>
@@ -743,9 +725,6 @@
     <string name="pref_cat_signal_cluster_title">Sinyal kümesi ayarları</string>
     <string name="pref_signal_cluster_data_activity_title">Veri aktivitesini aç</string>
     <string name="pref_signal_cluster_data_activity_summary">Indicates data activity on mobile and WiFi icons (requires reboot)</string>
-
-    <!-- Network mode tile: CDMA support -->
-    <string name="pref_network_mode_tile_cdma_title">CDMA ağ modlarını kullan</string>
 
     <!--  HW Key Action: Toggle auto rotation -->
     <string name="hwkey_action_auto_rotation">Oto. Döndürme</string>
@@ -1036,7 +1015,6 @@
     <string name="pref_quick_pulldown_size_title">Quick pulldown size</string>
 
     <!-- Stay Awake Tile modes -->
-    <string name="pref_qs_stay_awake_title">Uyanık kal karesi modu</string>
     <string name="stay_awake_15s">15sn</string>
     <string name="stay_awake_30s">30sn</string>
     <string name="stay_awake_1m">1dk</string>
@@ -1364,7 +1342,6 @@
     <string name="pref_lc_active_screen_mode_title">Active Screen modu</string>
     <string name="lc_active_screen_mode_disabled">Devre dışı</string>
     <string name="lc_active_screen_mode_nothing">Sadece ekranı aç</string>
-    <string name="lc_active_screen_mode_headsup">@string/pref_cat_lc_heads_up_title</string>
 
     <!-- QS: Remote display tile -->
     <string name="qs_tile_remote_display">Kablosuz ekran</string>
@@ -1381,10 +1358,6 @@
 
     <!-- Key actions: custom action -->
     <string name="hwkey_action_custom">Özel hareket</string>
-
-    <!-- UNC Active Screen: heads up timeout -->
-    <string name="pref_unc_as_headsup_timeout_title">Heads up zaman aşımı</string>
-    <string name="pref_unc_as_headsup_timeout_summary">Heads up penceresinin ne kadar gösterileceğini ayarlar. 0 = until unlocked.</string>
 
     <!-- QS: support for MSIM -->
     <string name="qs_tile_data_usage_2">Veri Kullanımı 2</string>
@@ -1421,15 +1394,5 @@
     <string name="charging_led_default">Default</string>
     <string name="charging_led_emulated">Emulated</string>
     <string name="charging_led_disabled">Disabled</string>
-
-    <!-- Heads up snooze timer -->
-    <string name="pref_heads_up_snooze_title">Enable snooze button</string>
-    <string name="headsup_snooze_all_apps">Set for all apps</string>
-    <string name="headsup_snooze_app">Set heads up snooze timer for %s</string>
-    <string name="pref_heads_up_snooze_reset_title">Reset snooze timers</string>
-    <string name="pref_heads_up_snooze_timer_title">Default snooze timer</string>
-    <string name="pref_heads_up_snooze_timer_summary">Timer to be set automatically when heads up snooze icon is clicked. 
-        Long-press on heads up snooze icon opens custom timer dialog.</string>
-    <string name="headsup_snooze_timer_set">Heads up default snooze timer set for %s</string>
 
 </resources>

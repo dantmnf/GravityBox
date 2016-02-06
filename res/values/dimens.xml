@@ -16,8 +16,6 @@
 <resources>
 
     <!-- ==================== pie controls ==================== -->
-    <!-- Actual width/height of the trigger views placed on the UI -->
-    <dimen name="pie_trigger_height">5dp</dimen>
     <!-- The distance a touch event must travel on the surface to trigger the pie control -->
     <dimen name="pie_trigger_distance">8dp</dimen>
     <!-- Padding between the pie controls and the screen border -->
@@ -49,7 +47,10 @@
     <!-- Statusbar Battery -->
     <dimen name="circle_battery_padding_left">0dp</dimen>
     <dimen name="circle_battery_padding_right">0dp</dimen>
-    <dimen name="percent_text_padding_left">0dp</dimen>
-    <dimen name="percent_text_padding_right">4dp</dimen>
+    <dimen name="percent_text_padding_left">4dp</dimen>
+    <dimen name="percent_text_padding_right">0dp</dimen>
+
+    <!-- QS DetailListAdapter -->
+    <dimen name="qs_detail_empty_text_size">14sp</dimen>
 
 </resources>

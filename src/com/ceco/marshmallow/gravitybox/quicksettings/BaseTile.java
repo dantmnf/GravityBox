@@ -32,6 +32,7 @@ import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import de.robv.android.xposed.XSharedPreferences;
@@ -111,6 +112,20 @@ public abstract class BaseTile implements QsEventListener {
     }
 
     @Override
+    public void onDualModeSet(View tileView, boolean enabled) {
+        if (enabled) {
+            View bgView = (View) XposedHelpers.getObjectField(tileView, "mTopBackgroundView");
+            bgView.setOnLongClickListener((OnLongClickListener) 
+                    XposedHelpers.getObjectField(tileView, "mLongClick"));
+        }
+    }
+
+    @Override
+    public boolean supportsDualTargets() {
+        return mDualMode;
+    }
+
+    @Override
     public void handleClick() {
         if (mHideOnChange && supportsHideOnChange()) {
             collapsePanels();
@@ -140,6 +155,11 @@ public abstract class BaseTile implements QsEventListener {
     @Override
     public boolean handleSecondaryClick() {
         return false;
+    }
+
+    @Override
+    public Object getDetailAdapter() {
+        return null;
     }
 
     @Override
@@ -292,6 +312,24 @@ public abstract class BaseTile implements QsEventListener {
             XposedHelpers.callMethod(mHost, "collapsePanels");
         } catch (Throwable t) {
             log("Error in collapsePanels: ");
+            XposedBridge.log(t);
+        }
+    }
+
+    public void showDetail(boolean show) {
+        try {
+            XposedHelpers.callMethod(mTile, "showDetail", show);
+        } catch (Throwable t) {
+            log("Error in showDetail: ");
+            XposedBridge.log(t);
+        }
+    }
+
+    public void fireToggleStateChanged(boolean state) {
+        try {
+            XposedHelpers.callMethod(mTile, "fireToggleStateChanged", state);
+        } catch (Throwable t) {
+            log("Error in fireToggleStateChanged: ");
             XposedBridge.log(t);
         }
     }

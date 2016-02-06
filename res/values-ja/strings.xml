@@ -54,10 +54,8 @@
     <string name="quick_settings_expanded_desktop_normal">通常</string>
     <string name="quick_settings_expanded_desktop_expanded">展開中</string>
     <string name="quick_settings_stay_awake_on">常時点灯オン</string>
-    <string name="quick_settings_stay_awake_off">常時点灯オフ</string>
     <string name="quick_settings_nfc_on">NFCオン</string>
     <string name="quick_settings_nfc_off">NFCオフ</string>
-    <string name="quick_settings_camera_error_connect">カメラ接続不可</string>
     <string name="quick_settings_usb_tether_off">未接続</string>
     <string name="quick_settings_usb_tether_connected">テザリングオフ</string>
     <string name="quick_settings_usb_tether_on">テザリング</string>
@@ -401,11 +399,6 @@
     <string name="unicode_stripping_leave_intact">そのままにする</string>
     <string name="unicode_stripping_non_encodable">エンコードできない文字を変換</string>
     <string name="unicode_stripping_all">全てのUnicode文字を変換</string>
-    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">ネットワークモードのタイル</string>
-    <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
-    <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
-    <string name="nm_tile_mode3">2G/3G/(LTE)</string>
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">画面の向きの自由化</string>
     <!-- QuickSettings: SIM Slot for network mode tile -->
@@ -528,13 +521,6 @@
     <string name="pref_navbar_color_enable_summary">無効化後は再起動してください。</string>
     <string name="pref_navbar_key_color_title">ナビキーの色</string>
     <string name="pref_navbar_key_glow_color_title">ナビキーのグロー色</string>
-    <!-- Transparency manager mode -->
-    <string name="pref_tm_mode_title">透過処理モード</string>
-    <string name="pref_tm_mode_summary">変更後は再起動してください。</string>
-    <string name="tm_mode_disabled">無効</string>
-    <string name="tm_mode_statusbar">ステータスバー</string>
-    <string name="tm_mode_navbar">ナビバー</string>
-    <string name="tm_mode_full">両方</string>
     <!-- Secondary signal icon color for MTK Dual SIMs -->
     <string name="pref_statusbar_icon_color_secondary_title">セカンダリ電波アイコン色</string>
     <string name="pref_statusbar_icon_color_secondary_summary">オレンジの電波アイコンを上書きします。</string>
@@ -555,8 +541,6 @@
     <!-- Google Plus -->
     <string name="pref_about_gplus_title">Google+コミュニティ</string>
     <string name="pref_about_gplus_summary">タップでGravityBoxのGoogle+コミュニティを開きます。</string>
-    <!-- Network mode tile: Allow LTE network mode -->
-    <string name="pref_network_mode_tile_lte_title">LTEモードを使用</string>
     <!-- HW Keys Navigation Bar warning -->
     <string name="hwkey_navbar_warning">ナビバーのアクションを有効化するには
         ナビバー設定でシステムの初期値を上書きしないといけません。</string>
@@ -576,7 +560,6 @@
     <!-- Volume panel timeout -->
     <string name="pref_volume_panel_timeout_title">音量パネルを非表示にするまでの時間</string>
     <!-- Ringer tile modes -->
-    <string name="pref_qs_ringer_mode_title">着信音モードタイル</string>
     <string name="ringer_mode_silent">サイレント</string>
     <string name="ringer_mode_vibrate">マナーモード</string>
     <string name="ringer_mode_sound">通常</string>
@@ -649,8 +632,6 @@
     <string name="pref_cat_signal_cluster_title">電波アイコン設定</string>
     <string name="pref_signal_cluster_data_activity_title">通信アイコンの表示</string>
     <string name="pref_signal_cluster_data_activity_summary">データ通信とWi-Fiアイコンに通信アイコンを表示します。(要再起動)</string>
-    <!-- Network mode tile: CDMA support -->
-    <string name="pref_network_mode_tile_cdma_title">CDMA方式を使用</string>
     <!--  HW Key Action: Toggle auto rotation -->
     <string name="hwkey_action_auto_rotation">自動回転トグル</string>
     <string name="hwkey_action_auto_rotation_enabled">自動回転オン</string>
@@ -892,7 +873,6 @@
     <!-- Quick pull down size -->
     <string name="pref_quick_pulldown_size_title">クイックプルダウンのサイズ</string>
     <!-- Stay Awake Tile modes -->
-    <string name="pref_qs_stay_awake_title">常時点灯タイルのモード</string>
     <string name="stay_awake_15s">15秒</string>
     <string name="stay_awake_30s">30秒</string>
     <string name="stay_awake_1m">1分</string>
@@ -1169,7 +1149,6 @@
     <string name="pref_lc_active_screen_mode_title">アクティブスクリーンモード</string>
     <string name="lc_active_screen_mode_disabled">無効</string>
     <string name="lc_active_screen_mode_nothing">画面点灯のみ</string>
-    <string name="lc_active_screen_mode_headsup">@string/pref_cat_lc_heads_up_title</string>
     <!-- QS: Remote display tile -->
     <string name="qs_tile_remote_display">画面のキャスト</string>
     <!-- UNC: main screen -->
@@ -1183,13 +1162,8 @@
     <string name="pref_unc_quiet_hours_summary">通知のお休みモードの設定を管理します。</string>
     <!-- Key actions: custom action -->
     <string name="hwkey_action_custom">カスタムアクション</string>
-    <!-- UNC Active Screen: heads up timeout -->
-    <string name="pref_unc_as_headsup_timeout_title">Heads upタイムアウト</string>
-    <string name="pref_unc_as_headsup_timeout_summary">Heads up通知ウインドウを表示する時間を指定します。 0 = アンロックされるまで表示</string>
     <!-- QS: support for MSIM -->
     <string name="qs_tile_data_usage_2">モバイルデータ2</string>
-    <!-- Heads Up: Transparency level -->
-    <string name="pref_heads_up_alpha_title">透過度</string>
     <!-- Charger unplugged sound -->
     <string name="pref_charger_unplugged_sound_title">電源接続解除時のサウンド</string>
     <!-- MTK tiles: Audio profile -->
@@ -1215,15 +1189,6 @@
     <string name="charging_led_default">デフォルト</string>
     <string name="charging_led_emulated">エミュレート</string>
     <string name="charging_led_disabled">無効</string>
-    <!-- Heads up snooze timer -->
-    <string name="pref_heads_up_snooze_title">スヌーズボタンの有効化</string>
-    <string name="headsup_snooze_all_apps">全てのアプリにセット</string>
-    <string name="headsup_snooze_app">%sにHeads upスヌーズタイマーをセット</string>
-    <string name="pref_heads_up_snooze_reset_title">スヌーズタイマーをリセット</string>
-    <string name="pref_heads_up_snooze_timer_title">デフォルトのスヌーズタイマー</string>
-    <string name="pref_heads_up_snooze_timer_summary">Heads upスヌーズアイコンをタップしたときに自動的にセットするスヌーズタイマーを設定します。
-        Heads upスヌーズアイコンを長押しするとカスタムタイマーダイアログが表示されます。</string>
-    <string name="headsup_snooze_timer_set">デフォルトのHeads upスヌーズタイマーを%sにセットしました</string>
     <!-- Quiet hours week days -->
     <string name="pref_lc_qh_weekdays_title">週日のセット</string>
     <!-- QuietHours: mute system sounds -->
@@ -1244,10 +1209,6 @@
     <!-- MSIM signal cluster: Hide SIM labels -->
     <string name="pref_signal_cluster_hide_sim_labels_title">SIMラベルを隠す</string>
     <string name="pref_signal_cluster_hide_sim_labels_summary">変更後は再起動してください。</string>
-    <!-- QS: network mode tile 2g+3g mode -->
-    <string name="pref_network_mode_tile_2g3g_mode_title">2G+3G モード</string>
-    <string name="nmt_2g3g_mode_wcdma">GSM/WCDMA 優先 (3G/2G)</string>
-    <string name="nmt_2g3g_mode_auto">GSM/WCDMA 自動 (2G/3G)</string>
     <!-- Power menu: expanded desktop in power menu -->
     <string name="pref_powermenu_expanded_desktop_title">電源メニューの拡張デスクトップ</string>
     <string name="pref_powermenu_expanded_desktop_summary">まず拡張デスクトップを無効に出来る他の方法があるか確認してください!!!</string>

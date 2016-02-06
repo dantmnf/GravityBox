@@ -66,10 +66,8 @@
     <string name="quick_settings_expanded_desktop_normal">Normal</string>
     <string name="quick_settings_expanded_desktop_expanded">Dipanjangkan</string>
     <string name="quick_settings_stay_awake_on">Hidupkan screen tanpa had masa</string>
-    <string name="quick_settings_stay_awake_off">Matikan screen tanpa had masa</string>
     <string name="quick_settings_nfc_on">Hidupkan NFC</string>
     <string name="quick_settings_nfc_off">Matikan NFC</string>
-    <string name="quick_settings_camera_error_connect">Tidak dapat disambung ke kamera</string>
     <string name="quick_settings_usb_tether_off">Diputuskan</string>
     <string name="quick_settings_usb_tether_connected">Tutup sambungan USB</string>
     <string name="quick_settings_usb_tether_on">Sambungan USB</string>
@@ -486,12 +484,6 @@
     <string name="unicode_stripping_non_encodable">Stripcode yang tidak boleh dileraikan</string>
     <string name="unicode_stripping_all">Strip semua huruf unicode</string>
 
-    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Tile mod rangkaian</string>
-    <string name="nm_tile_mode1">2G/2G+3G/3G/(4G)</string>
-    <string name="nm_tile_mode2">2G/2G+3G/(4G)</string>
-    <string name="nm_tile_mode3">2G/3G/(4G)</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Benarkan semua pusingan</string>
 
@@ -638,14 +630,6 @@
     <string name="pref_navbar_key_color_title">Warna bar navigasi</string>
     <string name="pref_navbar_key_glow_color_title">Warna glow untuk bar navigasi</string>
 
-    <!-- Transparency manager mode -->
-    <string name="pref_tm_mode_title">Mod pengurus transparent</string>
-    <string name="pref_tm_mode_summary">Perlukan reboot</string>
-    <string name="tm_mode_disabled">Matikan</string>
-    <string name="tm_mode_statusbar">Bar status</string>
-    <string name="tm_mode_navbar">Bar navigasi</string>
-    <string name="tm_mode_full">Keduanya</string>
-
     <!-- Secondary signal icon color for MTK Dual SIMs -->
     <string name="pref_statusbar_icon_color_secondary_title">Warna signal kedua</string>
     <string name="pref_statusbar_icon_color_secondary_summary">Gantikan warna asal (oren)</string>
@@ -672,9 +656,6 @@
     <string name="pref_about_gplus_title">Komuniti Google+</string>
     <string name="pref_about_gplus_summary">Tekan untuk lawat komuniti Google+ GravityBox</string>
 
-    <!-- Network mode tile: Allow LTE network mode -->
-    <string name="pref_network_mode_tile_lte_title">Benarkan rangkaian LTE</string>
-
     <!-- HW Keys Navigation Bar warning -->
     <string name="hwkey_navbar_warning">Demi untuk membenarkan aksi keatas bar navigasi, adalah perlu
         untuk tukar tetapan asal bar navigasi di modifikasi bar navigasi</string>
@@ -700,7 +681,6 @@
     <string name="pref_volume_panel_timeout_title">Masa tamat panel nada</string>
 
     <!-- Ringer tile modes -->
-    <string name="pref_qs_ringer_mode_title">Mod tile deringan</string>
     <string name="ringer_mode_silent">Senyap</string>
     <string name="ringer_mode_vibrate">Getar sahaja</string>
     <string name="ringer_mode_sound">Bunyi sahaja</string>
@@ -788,9 +768,6 @@
     <string name="pref_cat_signal_cluster_title">Tetapan Signal cluster</string>
     <string name="pref_signal_cluster_data_activity_title">Aktifkan aktiviti data</string>
     <string name="pref_signal_cluster_data_activity_summary">Tunjuk aktiviti data pada ikon paket data dan wifi (perlukan reboot)</string>
-
-    <!-- Network mode tile: CDMA support -->
-    <string name="pref_network_mode_tile_cdma_title">Gunakan rangkaian mod CDMA</string>
 
     <!--  HW Key Action: Toggle auto rotation -->
     <string name="hwkey_action_auto_rotation">Butan auto pusingan</string>
@@ -1084,7 +1061,6 @@
     <string name="pref_quick_pulldown_size_title">Size turun cepat</string>
 
     <!-- Stay Awake Tile modes -->
-    <string name="pref_qs_stay_awake_title">Mod tile berjaga</string>
     <string name="stay_awake_15s">15s</string>
     <string name="stay_awake_30s">30s</string>
     <string name="stay_awake_1m">1m</string>
@@ -1421,7 +1397,6 @@
     <string name="pref_lc_active_screen_mode_title">Mod skrin aktif</string>
     <string name="lc_active_screen_mode_disabled">Dimatikan</string>
     <string name="lc_active_screen_mode_nothing">Hidupkan skrin sahaja</string>
-    <string name="lc_active_screen_mode_headsup">@string/pref_cat_lc_heads_up_title</string>
 
     <!-- QS: Remote display tile -->
     <string name="qs_tile_remote_display">Cast skrin</string>
@@ -1439,15 +1414,8 @@
     <!-- Key actions: custom action -->
     <string name="hwkey_action_custom">Aksi tertentu</string>
 
-    <!-- UNC Active Screen: heads up timeout -->
-    <string name="pref_unc_as_headsup_timeout_title">Jangka masa Heads up</string>
-    <string name="pref_unc_as_headsup_timeout_summary">Jangka masa heads up berapa lama. 0 = sehingga di unlock.</string>
-
     <!-- QS: support for MSIM -->
     <string name="qs_tile_data_usage_2">Sim 2</string>
-
-    <!-- Heads Up: Transparency level -->
-    <string name="pref_heads_up_alpha_title">Tahap kejernihan</string>
 
     <!-- Charger unplugged sound -->
     <string name="pref_charger_unplugged_sound_title">Bunyi ketika charger dicabut</string>
@@ -1482,16 +1450,6 @@
     <string name="charging_led_emulated">Berkelip</string>
     <string name="charging_led_disabled">Dimatikan</string>
 
-    <!-- Heads up snooze timer -->
-    <string name="pref_heads_up_snooze_title">Aktifkan butang snooze</string>
-    <string name="headsup_snooze_all_apps">Set untuk semua aplikasi</string>
-    <string name="headsup_snooze_app">Set jangka masa heads up snooze untuk %s</string>
-    <string name="pref_heads_up_snooze_reset_title">Tetapan jangka masa snooze tertentu</string>
-    <string name="pref_heads_up_snooze_timer_title">Tetapan jangka masa snooze asal</string>
-    <string name="pref_heads_up_snooze_timer_summary">Jangka masa akan diset apabila ikon di klik. 
-        Tekan lama untuk paparkan dialog.</string>
-    <string name="headsup_snooze_timer_set">Tetapan jangka masa heads up asal diset untuk %s</string>
-
     <!-- Quiet hours week days -->
     <string name="pref_lc_qh_weekdays_title">Set hari biasa</string>
 
@@ -1517,11 +1475,6 @@
     <!-- MSIM signal cluster: Hide SIM labels -->
     <string name="pref_signal_cluster_hide_sim_labels_title">Sembunyi label SIM</string>
     <string name="pref_signal_cluster_hide_sim_labels_summary">Perlukan reboot</string>
-
-    <!-- QS: network mode tile 2g+3g mode -->
-    <string name="pref_network_mode_tile_2g3g_mode_title">Mode 2G+3G</string>
-    <string name="nmt_2g3g_mode_wcdma">GSM/WCDMA diutamakan (3G/2G)</string>
-    <string name="nmt_2g3g_mode_auto">GSM/WCDMA Auto (2G/3G)</string>
 
     <!-- Power menu: expanded desktop in power menu -->
     <string name="pref_powermenu_expanded_desktop_title">Modifikasi skrin penuh di butang power</string>

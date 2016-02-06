@@ -1,5 +1,6 @@
 package com.ceco.marshmallow.gravitybox.quicksettings;
 
+import android.provider.Settings;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
@@ -33,9 +34,10 @@ public class BluetoothTile extends AospTile {
     public boolean handleLongClick() {
         if (!mDualMode) {
             XposedHelpers.callMethod(mTile, "handleSecondaryClick");
-            return true;
+        } else {
+            startSettingsActivity(Settings.ACTION_BLUETOOTH_SETTINGS);
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -45,6 +47,7 @@ public class BluetoothTile extends AospTile {
     }
 
     private void createHooks() {
+        // this seems to be unsupported on some custom ROMs. Log one line and continue.
         try {
             mSupportsDualTargetsHook = XposedHelpers.findAndHookMethod(getClassName(), 
                     mContext.getClassLoader(), "supportsDualTargets", new XC_MethodHook() {
@@ -54,7 +57,7 @@ public class BluetoothTile extends AospTile {
                 }
             });
         } catch (Throwable t) {
-            XposedBridge.log(t);
+            log(getKey() + ": Your system does not seem to support standard AOSP tile dual mode");
         }
     }
 
